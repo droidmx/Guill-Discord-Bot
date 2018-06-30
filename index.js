@@ -107,7 +107,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             if (chars[i].equipment[4]) {
             finalchars += " <:backpack:462699732884783134>"
             }
-            finalchars += ` | ${chars[i].fame} <:fame:456347834908672030>`
+            finalchars += ` | **${chars[i].fame}** Base <:fame:456347834908672030>`
             finalchars += "\n"
           }
         }
@@ -153,7 +153,7 @@ msg.channel.send({embed: {
       },
       {
         name: "Fame",
-        value: `Alive: **${fame}** | Account: **${acctfame}**`,
+        value: `Alive <:fame:456347834908672030>: **${fame}** | Account <:fame:456347834908672030>: **${acctfame}**`,
         inline: true
       },
       {
