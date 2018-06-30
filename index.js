@@ -8,7 +8,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-const prefix = '-'
+const prefix = '/'
 client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
@@ -20,9 +20,19 @@ client.on('message', async msg => { // START MESSAGE HANDLER
     let rapii = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=;";
     let petrapii = "http://www.tiffit.net/RealmInfo/api/pets-of?u=" + ruser;
 
-    msg.delete();
+   
     if (!ruser)
-      return msg.channel.send("Please include a username after `\realmeye`.")
+      return msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You did not provide a RotMG Username to look up!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
     snekfetch.get(petrapii).then(p => {
       if (!p.body.error) {
         var abia = p.body.pets[0].ability1.type
@@ -103,7 +113,17 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         }
 
       } else {
-        msg.channel.send("Either user doesn't exist or realmeye is hidden")
+        msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> Either user doesn't exist, or has a hidden Realmeye Profile!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
         return;
       }
     
