@@ -110,7 +110,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 msg.channel.send({embed: {
     color: 0xFFFFFF,
     author: {
-      name: "__Realmeye Information for__",
+      name: "Realmeye Information for",
       icon_url: client.user.avatarURL
     },
     title: `**${name}**`,
@@ -138,7 +138,7 @@ msg.channel.send({embed: {
       },
       {
         name: "Guild",
-        value: `[**${guild}**](https://www.realmeye.com/guild/${guild}) | Rank: **${guildrank}**`,
+        value: `**${guild}** | Rank: **${guildrank}**`,
         inline: true
       },
       {
@@ -155,6 +155,9 @@ msg.channel.send({embed: {
     footer: {
       icon_url: client.user.avatarURL,
       text: "© Droid"
+    },
+  thumbnail: {
+      "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
     }
   }
 });
