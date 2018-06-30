@@ -13,7 +13,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
 
-  if (msg.content.toLowerCase().startsWith(prefix + 'realmeye')) {
+  if (msg.content.toLowerCase().startsWith(prefix + 'player')) {
 
     let ruser = args[1]
     console.log(ruser)
@@ -152,8 +152,8 @@ msg.channel.send({embed: {
         inline: true
       },
       {
-        name: "Fame",
-        value: `Alive <:fame:456347834908672030>: **${fame}** | Account <:fame:456347834908672030>: **${acctfame}**`,
+        name: "Fame <:fame:456347834908672030>",
+        value: `Alive: **${fame}** | Account: **${acctfame}**`,
         inline: true
       },
       {
