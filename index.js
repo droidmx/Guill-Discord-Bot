@@ -13,7 +13,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
 
-  if (msg.content.toLowerCase.startsWith(prefix + 'realmeye')) {
+  if (msg.content.toLowerCase().startsWith(prefix + 'realmeye')) {
 
     let ruser = args[1]
     console.log(ruser)
