@@ -6,6 +6,8 @@ let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
+  client.user.setActivity('for /player', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
+.catch(console.error);
 });
 
 const prefix = '/'
