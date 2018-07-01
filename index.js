@@ -6,7 +6,7 @@ let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
-  client.user.setActivity('for /player', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
+  client.user.setActivity('RotMG Players | /help', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
 .catch(console.error);
 });
 
@@ -22,7 +22,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
     let rapii = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=;";
     let petrapii = "http://www.tiffit.net/RealmInfo/api/pets-of?u=" + ruser;
 
-   
+
     if (!ruser)
       return msg.channel.send({
         embed: {
@@ -34,7 +34,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             text: "© Droid & Co."
           }
         }
-})
+      })
     snekfetch.get(petrapii).then(p => {
       if (!p.body.error) {
         var abia = p.body.pets[0].ability1.type
@@ -68,7 +68,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         if (!test['h']) {
           test['h'] = `${leva} ${abia} • ${levb} ${abib} • ${levc} ${abic}`
         } else {
-          test['h'] = `**${leva}** ${abia} • **${levb}** ${abib} • **${levc}** ${abic}`
+          test['h'] = `${leva} ${abia} • ${levb} ${abib} • ${levc} ${abic}`
         }
         console.log(test['h'])
         fs.writeFile('./test.json', JSON.stringify(test), console.error);
@@ -102,23 +102,290 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           var finalchars = 'hidden'
         } else {
           var finalchars = ""
+          if (chars.length > 10) {
+          finalchars += `**${chars[i].stats_maxed}**`
+            finalchars += " "
+            finalchars += chars[i].class
+            if (chars[i].equipment[4]) {
+              finalchars += " <:backpack:462699732884783134>"
+            }
+            finalchars += ` | Fame: **${chars[i].fame}** `
+            finalchars += "\n"
+          }else {
           for (i in chars) {
             finalchars += `**${chars[i].stats_maxed}**`
             finalchars += " "
             finalchars += chars[i].class
             if (chars[i].equipment[4]) {
-            finalchars += " <:backpack:462699732884783134>"
+              finalchars += " <:backpack:462699732884783134>"
             }
-            finalchars += ` | **${chars[i].fame}** Base <:fame:456347834908672030>`
+            finalchars += ` | Base <:fame:456347834908672030>: **${chars[i].fame}** `
             finalchars += "\n"
+          }
           }
         }
 
       } else {
         msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Either user doesn't exist, or has a hidden Realmeye Profile!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+        return;
+      }
+
+      msg.channel.send({
+        embed: {
+          color: 0xFFFFFF,
+          author: {
+            name: "Realmeye Information for",
+            icon_url: client.user.avatarURL
+          },
+          title: `**${name}**`,
+          url: `http://www.realmeye.com/player/${name}`,
+          description: `**Description:**\n${desc1}\n${desc2}\n${desc3}`,
+          fields: [{
+              name: "Stars",
+              value: `**${stars}** ★`,
+              inline: true
+            },
+            {
+              name: "First Seen",
+              value: `*${created}*`,
+              inline: true
+            },
+            {
+              name: "Last Seen",
+              value: `*${location}*`,
+              inline: true
+            },
+            {
+              name: "Fame",
+              value: `Alive <:fame:456347834908672030>: **${fame}** | Account <:fame:456347834908672030>: **${acctfame}**`,
+              inline: true
+            },
+            {
+              name: "Guild",
+              value: `**${guild}** | Rank: **${guildrank}**`,
+              inline: true
+            },
+            {
+              name: "Pet",
+              value: `${test['h']}`,
+              inline: true
+            },
+            {
+              name: "Characters",
+              value: `${finalchars}`
+            },
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
+          }
+        }
+      });
+
+    }) //endrealmeyechar
+  } //end player
+
+
+  if (msg.content.toLowerCase().startsWith(prefix + 'guild')) {
+    var argss = msg.content.split(" ").splice(1)
+    let guild = argss.slice(0).join(' ');
+    if (!guild) {
+      msg.channel.send({
         embed: {
           color: 0xFF0000,
-          description: "<:warn:459473619613908994> Either user doesn't exist, or has a hidden Realmeye Profile!",
+          description: "<:warn:459473619613908994> You did not provide a RotMG Username to look up!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      return;
+    }
+    console.log(guild)
+    let guildapi = "http://www.tiffit.net/RealmInfo/api/guild?g=" + guild + "&fe"
+    snekfetch.get(guildapi).then(g => {
+      if (!g.body.error) {
+        var guildname = g.body.name
+        var membercount = g.body.memberCount
+        var membercount = membercount.toString()
+        var characters = g.body.characters
+        var characters = characters.toString()
+        var guildfame = g.body.fame.amount
+        var guildfame = guildfame.toString()
+        var worldrank = g.body.fame.rank
+        var activeserver = g.body.most_active.server
+        var serverrank = g.body.most_active.rank
+
+        var founders = ""
+        var leaders = ""
+        var officers = ""
+        var members = ""
+        var initiates = ""
+
+        for (i in g.body.members) {
+          if (g.nody.members[i].guild_rank == "Founder") {
+            founders += `${g.body.members[i].name}`
+            founders += "\n"
+          }
+          if (g.nody.members[i].guild_rank == "Leader") {
+            leaders += `${g.body.members[i].name}`
+            leaders += "\n"
+          }
+          if (g.nody.members[i].guild_rank == "Officer") {
+            officers += `${g.body.members[i].name}`
+            officers += "\n"
+          }
+          if (g.nody.members[i].guild_rank == "Member") {
+            members += `${g.body.members[i].name}`
+            members += "\n"
+          }
+          if (g.nody.members[i].guild_rank == "Initiate") {
+            initiates += `${g.body.members[i].name}`
+            initiates += "\n"
+          }
+        }
+
+
+
+        msg.channel.send({
+          embed: {
+            color: 0xFFFFFF,
+            author: {
+              name: "Guild Information for",
+              icon_url: client.user.avatarURL
+            },
+            title: `**${guildname}**`,
+            url: `http://www.realmeye.com/player/${guildname}`,
+            fields: [{
+                name: "Members",
+                value: `**${membercount}**`,
+                inline: true
+              },
+              {
+                name: "Guild <:fame:456347834908672030>",
+                value: `*${guildfame}*`,
+                inline: true
+              },
+              {
+                name: "Active Server",
+                value: `*${activeserver}*`,
+                inline: true
+              },
+              {
+                name: "Ranks 📈",
+                value: `Server: **${serverrank}** | World: **${worldrank}**`,
+                inline: true
+              },
+              {
+                name: "Count Stats",
+                value: `# of Members **${membercount}** | # of Characters: **${characters}**`,
+                inline: true
+              },
+              {
+                name: "Founder(s)",
+                value: `${founders}`,
+                inline: true
+              },
+              {
+                name: "Leaders",
+                value: `${leaders}`,
+                inline: true
+              },
+              {
+                name: "Officers",
+                value: `${officers}`,
+                inline: true
+              },
+              {
+                name: "Members",
+                value: `${members}`,
+                inline: true
+              },
+              {
+                name: "Initiates",
+                value: `${initiates}`,
+                inline: true
+              },
+            ],
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid"
+            },
+            thumbnail: {
+              "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
+            }
+          }
+        });
+
+      } else {
+        msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Guild not found!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+      }
+    })
+  }// end guild
+  
+  if (msg.content.toLowerCase().startsWIth(prefix + 'invite')) {
+  msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "Click [here](https://discordapp.com/api/oauth2/authorize?client_id=462681278639243274&permissions=346112&scope=bot) to invite me to your server! Please leave the default permissions on!",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+  }
+  
+  
+  if (msg.content.toLowerCase().startsWith(prefix + 'help')) {
+  
+  var param = args[1]
+  if (!param) return msg.channel.send({
+        embed: {
+          color: 0x000000,
+ 					fields: [{
+          name: "Commands",
+          value: "To get help for a specific command, use `/help <command>`"
+          },
+          {
+          name: "<a:oryx:462438025956425748> RotMG",
+          value: "```ini\n(player) (guild)```"
+          },
+          {
+          name: "ℹ Information",
+          value: "```ini\n(help) (invite)```"
+          }
+          
+          
+          ],
           timestamp: new Date(),
           footer: {
             icon_url: client.user.avatarURL,
@@ -126,99 +393,31 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           }
         }
 })
-        return;
-      }
-    
-msg.channel.send({embed: {
-    color: 0xFFFFFF,
-    author: {
-      name: "Realmeye Information for",
-      icon_url: client.user.avatarURL
-    },
-    title: `**${name}**`,
-    url: `http://www.realmeye.com/player/${name}`,
-    description: `**Description:**\n${desc1}\n${desc2}\n${desc3}`,
-    fields: [{
-        name: "Stars",
-        value: `**${stars}** ★`,
-        inline: true
-      },
-      {
-        name: "First Seen",
-        value: `*${created}*`,
-        inline: true
-      },
-      {
-        name: "Last Seen",
-        value: `*${location}*`,
-        inline: true
-      },
-      {
-        name: "Fame <:fame:456347834908672030>",
-        value: `Alive: **${fame}** | Account: **${acctfame}**`,
-        inline: true
-      },
-      {
-        name: "Guild",
-        value: `**${guild}** | Rank: **${guildrank}**`,
-        inline: true
-      },
-      {
-        name: "Pet",
-        value: `${test['h']}`,
-        inline: true
-      },
-      {
-        name: "Characters",
-        value: `${finalchars}`
-      },
-    ],
-    timestamp: new Date(),
-    footer: {
-      icon_url: client.user.avatarURL,
-      text: "© Droid"
-    },
-  thumbnail: {
-      "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
-    }
+if (param == 'player') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'guild') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Guild Command**\nFunction: Gets a guild's data through Realmeye\nUsage: `/guild <Guild Name>`\nNote: *Guild name is case-sensitive*",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+  
   }
-});
-
-    }) //endrealmeyechar
-  }
-})// end message handler
+  
+}) // end message handler
 
 client.login(process.env.BOT_TOKEN)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
