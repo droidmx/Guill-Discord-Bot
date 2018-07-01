@@ -241,23 +241,23 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         var initiates = ""
 
         for (i in g.body.members) {
-          if (g.nody.members[i].guild_rank == "Founder") {
+          if (g.body.members[i].guild_rank == "Founder") {
             founders += `${g.body.members[i].name}`
             founders += "\n"
           }
-          if (g.nody.members[i].guild_rank == "Leader") {
+          if (g.body.members[i].guild_rank == "Leader") {
             leaders += `${g.body.members[i].name}`
             leaders += "\n"
           }
-          if (g.nody.members[i].guild_rank == "Officer") {
+          if (g.body.members[i].guild_rank == "Officer") {
             officers += `${g.body.members[i].name}`
             officers += "\n"
           }
-          if (g.nody.members[i].guild_rank == "Member") {
+          if (g.body.members[i].guild_rank == "Member") {
             members += `${g.body.members[i].name}`
             members += "\n"
           }
-          if (g.nody.members[i].guild_rank == "Initiate") {
+          if (g.body.members[i].guild_rank == "Initiate") {
             initiates += `${g.body.members[i].name}`
             initiates += "\n"
           }
