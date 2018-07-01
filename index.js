@@ -350,7 +350,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
     })
   }// end guild
   
-  if (msg.content.toLowerCase().startsWIth(prefix + 'invite')) {
+  if (msg.content.toLowerCase().startsWith(prefix + 'invite')) {
   msg.channel.send({
   embed: {
   color: 0x000000,
