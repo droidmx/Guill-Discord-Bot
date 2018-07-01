@@ -209,7 +209,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
       msg.channel.send({
         embed: {
           color: 0xFF0000,
-          description: "<:warn:459473619613908994> You did not provide a RotMG Username to look up!",
+          description: "<:warn:459473619613908994> You did not provide a Guild Name to look up!",
           timestamp: new Date(),
           footer: {
             icon_url: client.user.avatarURL,
@@ -340,7 +340,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         msg.channel.send({
           embed: {
             color: 0xFF0000,
-            description: "<:warn:459473619613908994> Guild not found!",
+            description: "<:warn:459473619613908994> Guild not found!\nNote: *Guild Names are CASE-SENSITIVE*",
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
