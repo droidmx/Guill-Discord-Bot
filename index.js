@@ -6,7 +6,7 @@ let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
-  client.user.setActivity('RotMG Players | /help', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
+  client.user.setActivity('realmeye | /help', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
 .catch(console.error);
 });
 
@@ -373,15 +373,15 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           color: 0x000000,
  					fields: [{
           name: "Commands",
-          value: "To get help for a specific command, use `/help <command>`"
+          value: "To get help for a specific command, use `/help <command>` Prefix: `/`"
           },
           {
           name: "<a:oryx:462438025956425748> RotMG",
-          value: "```ini\n(player) (guild)```"
+          value: "```ini\n[player] [guild]```"
           },
           {
-          name: "ℹ Information",
-          value: "```ini\n(help) (invite)```"
+          name: "<:info:459473619530285057> Information",
+          value: "```ini\n[help] [invite]```"
           }
           
           
@@ -408,6 +408,17 @@ if (param == 'guild') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Guild Command**\nFunction: Gets a guild's data through Realmeye\nUsage: `/guild <Guild Name>`\nNote: *Guild name is case-sensitive*",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+    if (param == 'invite') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Invite Command**\nFunction: Sends an invite link for the bot\nUsage: `/invite`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
