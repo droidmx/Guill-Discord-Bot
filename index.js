@@ -103,6 +103,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         } else {
           var finalchars = ""
           if (chars.length > 10) {
+            for (i in chars) {
           finalchars += `**${chars[i].stats_maxed}**`
             finalchars += " "
             finalchars += chars[i].class
@@ -111,6 +112,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             }
             finalchars += ` | Fame: **${chars[i].fame}** `
             finalchars += "\n"
+            }
           }else {
           for (i in chars) {
             finalchars += `**${chars[i].stats_maxed}**`
