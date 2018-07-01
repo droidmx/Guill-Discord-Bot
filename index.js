@@ -375,7 +375,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           color: 0x000000,
  					fields: [{
           name: "Commands",
-          value: "To get help for a specific command, use `/help <command>` Prefix: `/`"
+          value: "To get help for a specific command, use `/help <command>`"
           },
           {
           name: "<a:oryx:462438025956425748> RotMG",
