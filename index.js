@@ -311,18 +311,15 @@ client.on('message', async msg => { // START MESSAGE HANDLER
               },
               {
                 name: "Officers",
-                value: `${officers}`,
-                inline: true
+                value: `${officers}`
               },
               {
                 name: "Members",
-                value: `${members}`,
-                inline: true
+                value: `${members}`
               },
               {
                 name: "Initiates",
-                value: `${initiates}`,
-                inline: true
+                value: `${initiates}`
               },
             ],
             timestamp: new Date(),
