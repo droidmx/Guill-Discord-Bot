@@ -89,7 +89,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         var acctfame = r.body.account_fame
         var created = r.body.created
         var skins = r.body.skins
-        var guild = r.body.guild
+        var guildd = r.body.guild
         var chars = r.body.characters
         var guildrank = r.body.guild_rank
         if (count == -1) {
@@ -174,7 +174,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             },
             {
               name: "Guild",
-              value: `**${guild}** | Rank: **${guildrank}**`,
+              value: `**${guildd}** | Rank: **${guildrank}**`,
               inline: true
             },
             {
