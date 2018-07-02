@@ -219,7 +219,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
       return;
     }
     console.log(guild)
-    let guildapi = "http://www.tiffit.net/RealmInfo/api/guild?g=" + guild + "&f="
+    let guildapi = "www.tiffit.net/RealmInfo/api/guild?g=" + guild + "&f="
     snekfetch.get(guildapi).then(g => {
       if (!g.body.error) {
         var guildname = g.body.name
