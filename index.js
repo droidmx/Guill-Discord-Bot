@@ -212,7 +212,6 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           description: "<:warn:459473619613908994> You did not provide a Guild Name to look up!",
           timestamp: new Date(),
           footer: {
-            icon_url: client.user.avatarURL,
             text: "© Droid & Co."
           }
         }
@@ -261,6 +260,11 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             initiates += `${g.body.members[i].name}`
             initiates += "\n"
           }
+          if (initiates == "") initiates += "None"
+          if (members == "") members += "None"
+          if (officers == "") officers += "None"
+          if (leaders == "") leaders += "None"
+          if (founders == "") founders += "None"
         }
 
 
@@ -269,8 +273,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           embed: {
             color: 0xFFFFFF,
             author: {
-              name: "Guild Information for",
-              icon_url: client.user.avatarURL
+              name: "Guild Information for"
             },
             title: `**${guildname}**`,
             url: `http://www.realmeye.com/player/${guildname}`,
@@ -301,13 +304,11 @@ client.on('message', async msg => { // START MESSAGE HANDLER
               },
               {
                 name: "Founder(s)",
-                value: `${founders}`,
-                inline: true
+                value: `${founders}`
               },
               {
                 name: "Leaders",
-                value: `${leaders}`,
-                inline: true
+                value: `${leaders}`
               },
               {
                 name: "Officers",
@@ -340,7 +341,6 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             description: "<:warn:459473619613908994> Guild not found!\nNote: *Guild Names are CASE-SENSITIVE*",
             timestamp: new Date(),
             footer: {
-              icon_url: client.user.avatarURL,
               text: "© Droid & Co."
             }
           }
