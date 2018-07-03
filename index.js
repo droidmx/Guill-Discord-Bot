@@ -236,7 +236,59 @@ if (!chars[0]) {
 
     }) //endrealmeyechar
   } //end player
+if (msg.content.toLowerCase().startsWith(prefix + 'backpack')) {
+let backpackapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=misc'
 
+snekfetch.get(backpackapi).then(b=> {
+for (i in b.body.item) {
+if (b.body.item[i].name == "Backpack") {
+var cheapest = b.body.item[i].cheapest_on
+var price = b.body.item[i].price
+var quantity = b.body.item[i].quantity
+var timeleft = b.body.item[i]['Time Left']
+msg.channel.send({
+        embed: {
+          color: 0xC76520,
+          author: {
+            name: "Cheapest Backpack <:backpack:462699732884783134>",
+            icon_url: client.user.avatarURL
+          },
+          fields: [{
+              name: "Location",
+              value: `**${cheapest}**`,
+              inline: true
+            },
+            {
+              name: "Price",
+              value: `${price} <:coin:463847187957415946>`,
+              inline: true
+            },
+            {
+              name: "Supply",
+              value: `${quantity} backpacks `,
+              inline: true
+            }
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://static.drips.pw/rotmg/wiki/Consumable/Other/Backpack.png"
+          }
+        }
+      });
+}
+}
+
+ 
+
+
+
+})
+
+}
 if (msg.content.toLowerCase().startsWith(prefix + 'gmembers')) {
 var argss = msg.content.split(" ").splice(1)
     let guild = argss.slice(0).join(' ');
@@ -444,7 +496,7 @@ var founders = ""
             name: client.user.username,
             icon_url: client.user.avatarURL
           },
-          description: "Realmeye Bot is discord bot for RotMG Players to use for convenience. It makes fetching user and guild info easier and presentable, and overall improves players' experience with the game! To see what commands this bot has to offer, type `/help` in a channel! To invite this bot to your server, type `/invite`",
+          description: "Realmeye Bot is discord bot for RotMG Players to use for convenience. It makes fetching user and guild info easier and presentable, and overall improves players' experience with the game!\nTo see what commands this bot has to offer, type `/help` in a channel!\nTo invite this bot to your server, type `/invite`",
  					fields: [{
           name: "Framework",
           value: "Discord.js ⇨ [Documentation](https://discord.js.org/#/)"
@@ -481,7 +533,7 @@ var founders = ""
           },
           {
           name: "<a:oryx:462438025956425748> RotMG",
-          value: "```ini\n[player] [chars] [guild] [gmembers]```"
+          value: "```ini\n[player] [chars] [guild] [gmembers] [backpack]```"
           },
           {
           name: "<:info:459473619530285057> Information",
@@ -501,6 +553,17 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'backpack') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Backpack Command**\nFunction: Shows the cheapest place to buy a Backpack and more\nUsage: `/backpack`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
