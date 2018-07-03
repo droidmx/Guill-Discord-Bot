@@ -277,7 +277,6 @@ client.on('message', async msg => { // START MESSAGE HANDLER
               name: "Guild Information for"
             },
             title: `**${guildname}**`,
-            url: `http://www.realmeye.com/guild/${guildname}`,
             fields: [{
                 name: "Members",
                 value: `**${membercount}**`,
