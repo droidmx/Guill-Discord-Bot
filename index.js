@@ -15,6 +15,78 @@ client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
 
+
+if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
+var charuser = args[1]
+
+if (!charuser)
+      return msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You did not provide a RotMG Username to look up!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      let charapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + charuser + "&f=;";
+      
+      snekfetch.get(charapi).then(r => {
+      
+      var chars = r.body.characters
+if (!chars[0]) {
+          var finalchars = 'hidden'
+        } else {
+          var finalchars = ""
+     
+          for (i in chars) {
+            finalchars += `**${chars[i].stats_maxed}**`
+            finalchars += " "
+            finalchars += chars[i].class
+            if (chars[i].equipment[4]) {
+              finalchars += " <:backpack:462699732884783134> \n"
+            }
+            finalchars += `Base <:fame:456347834908672030>: **${chars[i].fame}**`
+            finalchars += "\n"
+            finalchars += `Equips 
+            \n<a:items:463555911399768104> ${chars[i].equipment[0]}
+            \n<a:abilities:463556655901311002>${chars[i].equipment[1]}
+            \n<a:armors:463556779985600513>${chars[i].equipment[2]}
+            \n<:rings:463556965185093653>${chars[i].equipment[3]}
+            \n`
+          }
+          
+        }
+        msg.channel.send({
+        embed: {
+          color: 0xFFFFFF,
+          author: {
+            name: "RotMG Characters for",
+            icon_url: client.user.avatarURL
+          },
+          title: `**${r.body.name}**`,
+          url: `http://www.realmeye.com/player/${name}`,
+          description: `${finalchars}`,
+          
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
+          }
+        }
+      });
+
+        
+        
+        
+})
+}
+
   if (msg.content.toLowerCase().startsWith(prefix + 'player')) {
 
     let ruser = args[1]
@@ -90,7 +162,6 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         var created = r.body.created
         var skins = r.body.skins
         var guildd = r.body.guild
-        var chars = r.body.characters
         var guildrank = r.body.guild_rank
         if (count == -1) {
           var count = 'hidden'
@@ -98,34 +169,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         if (skins == -1) {
           var skins = 'hidden'
         }
-        if (!chars[0]) {
-          var finalchars = 'hidden'
-        } else {
-          var finalchars = ""
-          if (chars.length > 10) {
-            for (i in chars) {
-          finalchars += `**${chars[i].stats_maxed}**`
-            finalchars += " "
-            finalchars += chars[i].class
-            if (chars[i].equipment[4]) {
-              finalchars += " <:backpack:462699732884783134>"
-            }
-            finalchars += ` | Fame: **${chars[i].fame}** `
-            finalchars += "\n"
-            }
-          }else {
-          for (i in chars) {
-            finalchars += `**${chars[i].stats_maxed}**`
-            finalchars += " "
-            finalchars += chars[i].class
-            if (chars[i].equipment[4]) {
-              finalchars += " <:backpack:462699732884783134>"
-            }
-            finalchars += ` | Base <:fame:456347834908672030>: **${chars[i].fame}** `
-            finalchars += "\n"
-          }
-          }
-        }
+        
 
       } else {
         msg.channel.send({
@@ -181,11 +225,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
               name: "Pet",
               value: `${test['h']}`,
               inline: true
-            },
-            {
-              name: "Characters",
-              value: `${finalchars}`
-            },
+            }
           ],
           timestamp: new Date(),
           footer: {
@@ -201,7 +241,100 @@ client.on('message', async msg => { // START MESSAGE HANDLER
     }) //endrealmeyechar
   } //end player
 
+if (msg.content.toLowerCase().startsWith(prefix + 'gmembers')) {
+var argss = msg.content.split(" ").splice(1)
+    let guild = argss.slice(0).join(' ');
+    if (!guild) {
+      msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You did not provide a Guild Name to look up!",
+          timestamp: new Date(),
+          footer: {
+            text: "© Droid & Co."
+          }
+        }
+      })
+      return;
+    }
+    console.log(guild)
+    let gapi = "http://www.tiffit.net/RealmInfo/api/guild?g=" + guild + "&fe"
+    snekfetch.get(gapi).then(g => {
+    
+    if (!g.body.error) {
+var founders = ""
+        var leaders = ""
+        var officers = ""
+        var members = ""
+        var initiates = ""
 
+        for (i in g.body.members) {
+          if (!g.body.members[i].guild_rank) continue;
+          if (g.body.members[i].guild_rank == "Founder") {
+            founders += `${g.body.members[i].name}`
+            founders += ", "
+          }
+          if (g.body.members[i].guild_rank == "Leader") {
+            leaders += `${g.body.members[i].name}`
+            leaders += ", "
+          }
+          if (g.body.members[i].guild_rank == "Officer") {
+            officers += `${g.body.members[i].name}`
+            officers += ", "
+          }
+          if (g.body.members[i].guild_rank == "Member") {
+            members += `${g.body.members[i].name}`
+            members += ", "
+          }
+          if (g.body.members[i].guild_rank == "Initiate") {
+            initiates += `${g.body.members[i].name}`
+            initiates += ", "
+          }
+          if (initiates.length < 2) initiates += "None"
+          if (members.length < 2) members += "None"
+          if (officers.length < 2) officers += "None"
+          if (leaders.length < 2) leaders += "None"
+          if (founders.length < 2) founders += "None"
+        }
+        
+        msg.channel.send({
+        embed: {
+          color: 0xFFFFFF,
+          author: {
+            name: "Guild Members of",
+            icon_url: client.user.avatarURL
+          },
+          title: `**${g.body.name}**`,
+          description: `**Founder(s):** ${founders}\n**Leaders:** ${leaders}\n**Officers:** ${officers}\n**Members:** ${members}\n**Initiates:** ${initiates}`,
+          
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
+          }
+        }
+      });
+        
+        
+        
+        }else {
+        msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Guild not found!\nNote: *Guild Names are CASE-SENSITIVE*",
+            timestamp: new Date(),
+            footer: {
+              text: "© Droid & Co."
+            }
+          }
+        })
+        
+        }
+        })
+}
   if (msg.content.toLowerCase().startsWith(prefix + 'guild')) {
     var argss = msg.content.split(" ").splice(1)
     let guild = argss.slice(0).join(' ');
@@ -233,40 +366,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         var activeserver = g.body.most_active.server
         var serverrank = g.body.most_active.rank
 
-        var founders = ""
-        var leaders = ""
-        var officers = ""
-        var members = ""
-        var initiates = ""
-
-        for (i in g.body.members) {
-          if (!g.body.members[i].guild_rank) continue;
-          if (g.body.members[i].guild_rank == "Founder") {
-            founders += `${g.body.members[i].name}`
-            founders += "\n"
-          }
-          if (g.body.members[i].guild_rank == "Leader") {
-            leaders += `${g.body.members[i].name}`
-            leaders += "\n"
-          }
-          if (g.body.members[i].guild_rank == "Officer") {
-            officers += `${g.body.members[i].name}`
-            officers += "\n"
-          }
-          if (g.body.members[i].guild_rank == "Member") {
-            members += `${g.body.members[i].name}`
-            members += "\n"
-          }
-          if (g.body.members[i].guild_rank == "Initiate") {
-            initiates += `${g.body.members[i].name}`
-            initiates += "\n"
-          }
-          if (initiates.length == 0) initiates += "None"
-          if (members.length == 0) members += "None"
-          if (officers.length == 0) officers += "None"
-          if (leaders.length == 0) leaders += "None"
-          if (founders.length == 0) founders += "None"
-        }
+        
 
 
 
@@ -301,27 +401,8 @@ client.on('message', async msg => { // START MESSAGE HANDLER
                 name: "Count Stats",
                 value: `# of Members **${membercount}** | # of Characters: **${characters}**`,
                 inline: true
-              },
-              {
-                name: "Founder(s)",
-                value: `${founders}`
-              },
-              {
-                name: "Leaders",
-                value: `${leaders}`
-              },
-              {
-                name: "Officers",
-                value: `${officers}`
-              },
-              {
-                name: "Members",
-                value: `${members}`
-              },
-              {
-                name: "Initiates",
-                value: `${initiates}`
-              },
+              }
+              
             ],
             timestamp: new Date(),
             footer: {
@@ -363,7 +444,35 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 })
   }
   
+  if (msg.content.toLowerCase().startsWith(prefix + 'info')) {
+  msg.channel.send({
+        embed: {
+          color: 0x000000,
+          description: "Realmeye Bot is discord bot for RotMG Players to use for convenience. It makes fetching user and guild info easier and presentable, and overall improves players' experience with the game! To see what commands this bot has to offer, type `/help` in a channel! To invite this bot to your server, type `/invite`",
+ 					fields: [{
+          name: "Framework",
+          value: "Discord.js ⇨ [Documentation](https://discord.js.org/#/)"
+          },
+          {
+          name: "Language",
+          value: "JavaScript ⇨ [jsOfficial](https://www.javascript.com/)"
+          },
+          {
+          name: "Developer",
+          value: "`~Droid~#5799` ⇨ [Realmeye Profile](https://www.realmeye.com/player/droidmxbro) | [Github](https://github.com/droidmx)"
+          }
+          
+          
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
   
+  }
   if (msg.content.toLowerCase().startsWith(prefix + 'help')) {
   
   var param = args[1]
@@ -376,11 +485,11 @@ client.on('message', async msg => { // START MESSAGE HANDLER
           },
           {
           name: "<a:oryx:462438025956425748> RotMG",
-          value: "```ini\n[player] [guild]```"
+          value: "```ini\n[player] [chars] [guild] [gmembers]```"
           },
           {
           name: "<:info:459473619530285057> Information",
-          value: "```ini\n[help] [invite]```"
+          value: "```ini\n[help] [invite] [info]```"
           }
           
           
@@ -396,6 +505,28 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'chars') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Character Command**\nFunction: Shows a player's characters\nUsage: `/chars <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'gmembers') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Guild Members Command**\nFunction: Gets a list of members of the specified guild\nUsage: `/gmembers <Guild Name>`\nNote: *Guild name is case-sensitive*",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
