@@ -50,11 +50,11 @@ if (!chars[0]) {
             }
             finalchars += `Base <:fame:456347834908672030>: **${chars[i].fame}**`
             finalchars += "\n"
-            finalchars += `Equips 
-            \n<a:items:463555911399768104> ${chars[i].equipment[0]}
-            \n<a:abilities:463556655901311002>${chars[i].equipment[1]}
-            \n<a:armors:463556779985600513>${chars[i].equipment[2]}
-            \n<:rings:463556965185093653>${chars[i].equipment[3]}
+            finalchars += `Equips:
+              **|** ${chars[i].equipment[0]}
+            **|** ${chars[i].equipment[1]}
+            **|** ${chars[i].equipment[2]}
+            **|** ${chars[i].equipment[3]}
             \n`
           }
           
