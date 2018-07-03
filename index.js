@@ -240,7 +240,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         var initiates = ""
 
         for (i in g.body.members) {
-          if (!g.body.members[i].guild_rank) return;
+          if (!g.body.members[i].guild_rank) continue;
           if (g.body.members[i].guild_rank == "Founder") {
             founders += `${g.body.members[i].name}`
             founders += "\n"
