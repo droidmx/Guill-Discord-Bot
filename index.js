@@ -50,8 +50,8 @@ if (!chars[0]) {
             }
             finalchars += `Base <:fame:456347834908672030>: **${chars[i].fame}**`
             finalchars += "\n"
-            finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
-            \n`
+            /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
+            \n`*/
           }
           
         }
@@ -286,11 +286,7 @@ var founders = ""
             initiates += `${g.body.members[i].name}`
             initiates += ", "
           }
-          if (initiates.length < 2) initiates += "None"
-          if (members.length < 2) members += "None"
-          if (officers.length < 2) officers += "None"
-          if (leaders.length < 2) leaders += "None"
-          if (founders.length < 2) founders += "None"
+          
         }
         
         msg.channel.send({
@@ -444,6 +440,10 @@ var founders = ""
   msg.channel.send({
         embed: {
           color: 0x000000,
+          author: {
+            name: client.user.username,
+            icon_url: client.user.avatarURL
+          },
           description: "Realmeye Bot is discord bot for RotMG Players to use for convenience. It makes fetching user and guild info easier and presentable, and overall improves players' experience with the game! To see what commands this bot has to offer, type `/help` in a channel! To invite this bot to your server, type `/invite`",
  					fields: [{
           name: "Framework",
