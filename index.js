@@ -254,18 +254,15 @@ msg.channel.send({
           },
           fields: [{
               name: "Location",
-              value: `${cheapest}`,
-              inline: true
+              value: `${cheapest}`
             },
             {
               name: "Price",
-              value: `${price} <:coin:463847187957415946>`,
-              inline: true
+              value: `${price} <:coin:463847187957415946>`
             },
             {
               name: "Supply",
-              value: `${quantity} left`,
-              inline: true
+              value: `${quantity} left`
             }
           ],
           timestamp: new Date(),
