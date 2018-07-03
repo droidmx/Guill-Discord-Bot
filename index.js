@@ -261,11 +261,11 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             initiates += `${g.body.members[i].name}`
             initiates += "\n"
           }
-          if (initiates == "") initiates += "None"
-          if (members == "") members += "None"
-          if (officers == "") officers += "None"
-          if (leaders == "") leaders += "None"
-          if (founders == "") founders += "None"
+          if (initiates.length == 0) initiates += "None"
+          if (members.length == 0) members += "None"
+          if (officers.length == 0) officers += "None"
+          if (leaders.length == 0) leaders += "None"
+          if (founders.length == 0) founders += "None"
         }
 
 
