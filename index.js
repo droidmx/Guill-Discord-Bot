@@ -67,7 +67,7 @@ if (!chars[0]) {
             icon_url: client.user.avatarURL
           },
           title: `**${r.body.name}**`,
-          url: `http://www.realmeye.com/player/${name}`,
+          url: `http://www.realmeye.com/player/${r.body.name}`,
           description: `${finalchars}`,
           
           timestamp: new Date(),
