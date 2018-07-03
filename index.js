@@ -250,7 +250,7 @@ msg.channel.send({
         embed: {
           color: 0xC76520,
           author: {
-            name: "**Cheapest Backpack**"
+            name: "Cheapest Backpack"
           },
           fields: [{
               name: "Location",
