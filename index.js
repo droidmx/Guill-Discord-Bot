@@ -250,12 +250,12 @@ msg.channel.send({
         embed: {
           color: 0xC76520,
           author: {
-            name: "Cheapest Backpack <:backpack:462699732884783134>",
+            name: "Cheapest Backpack",
             icon_url: client.user.avatarURL
           },
           fields: [{
               name: "Location",
-              value: `**${cheapest}**`,
+              value: `${cheapest}`,
               inline: true
             },
             {
@@ -265,7 +265,7 @@ msg.channel.send({
             },
             {
               name: "Supply",
-              value: `${quantity} backpacks `,
+              value: `${quantity} <:backpack:462699732884783134> left`,
               inline: true
             }
           ],
