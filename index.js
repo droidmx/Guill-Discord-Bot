@@ -219,7 +219,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
       return;
     }
     console.log(guild)
-    let guildapi = "http://www.tiffit.net/RealmInfo/api/guild?g=" + guild + "&f="
+    let guildapi = "http://www.tiffit.net/RealmInfo/api/guild?g=" + guild + "&fe"
     snekfetch.get(guildapi).then(g => {
       if (!g.body.error) {
         var guildname = g.body.name
@@ -240,6 +240,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         var initiates = ""
 
         for (i in g.body.members) {
+          if (!g.body.members[i].guild_rank) return;
           if (g.body.members[i].guild_rank == "Founder") {
             founders += `${g.body.members[i].name}`
             founders += "\n"
@@ -276,7 +277,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
               name: "Guild Information for"
             },
             title: `**${guildname}**`,
-            url: `http://www.realmeye.com/player/${guildname}`,
+            url: `http://www.realmeye.com/guild/${guildname}`,
             fields: [{
                 name: "Members",
                 value: `**${membercount}**`,
