@@ -22,11 +22,11 @@ if (msg.content.startsWith(prefix + 'updateusername')) {
    }
   
   if (msg.content.startsWith(prefix + 'stats')) {
-    msg.channel.send(`= STATISTICS =
+    msg.channel.send(`\`\`\`asciidoc\n= STATISTICS =
 • Users      :: ${client.users.size.toLocaleString()}
 • Servers    :: ${client.guilds.size.toLocaleString()}
-• Channels   :: ${client.channels.size.toLocaleString()}, {code: "asciidoc"});
-};
+• Channels   :: ${client.channels.size.toLocaleString()}\`\`\``);
+}
     
   
 if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
