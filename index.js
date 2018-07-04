@@ -50,9 +50,9 @@ if (!chars[0]) {
             finalchars += " "
             finalchars += chars[i].class
             if (chars[i].equipment[4]) {
-              finalchars += " <:backpack:462699732884783134> \n"
+              finalchars += " <:backpack:462699732884783134>"
             }
-            finalchars += `Base <:fame:456347834908672030>: **${chars[i].fame}**`
+            finalchars += `\nBase <:fame:456347834908672030>: **${chars[i].fame}**`
             finalchars += "\n"
             /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
             \n`*/
