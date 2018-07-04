@@ -267,7 +267,7 @@ if (!chars[0]) {
         test['eggcheck'] = 'notfound'
         snekfetch.get(eggapi).then(p=> {
         for (i in p.body.item)
-        if (p.body.item[i].name.includes(`${rarity} ${type}`)) {
+        if (p.body.item[i].name.toLowerCase().includes(`${rarity.toLowerCase()}` && `${type.toLowerCase()}`)) {
         msg.channel.send({
         embed: {
           color: 0xFFD0E7,
