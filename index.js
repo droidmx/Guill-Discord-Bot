@@ -276,7 +276,7 @@ if (!chars[0]) {
           },
           fields: [{
               name: "Egg Found! <a:eggs:463883553663614978>",
-              value: `${p.boy.item[i].name}`
+              value: `${p.body.item[i].name}`
             },
             {
               name: "Cheapest Location",
