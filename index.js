@@ -19,7 +19,16 @@ if (msg.content.startsWith(prefix + 'updateusername')) {
          if (msg.author.id != '368756694114893825') return;	  
    client.user.setUsername("Guill");	
      msg.channel.send('successful')	 
-   }	   
+   }
+  
+  if (msg.content.startsWith(prefix + 'stats')) {
+    msg.channel.send(`= STATISTICS =
+• Users      :: ${client.users.size.toLocaleString()}
+• Servers    :: ${client.guilds.size.toLocaleString()}
+• Channels   :: ${client.channels.size.toLocaleString()}, {code: "asciidoc"});
+};
+    
+  
 if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
 var charuser = args[1]
 
