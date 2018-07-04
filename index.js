@@ -309,7 +309,7 @@ if (!chars[0]) {
         if (test['eggcheck'] == 'notfound') return msg.channel.send({
           embed: {
             color: 0xFF0000,
-            description: "<:warn:459473619613908994> The Egg with the specified detailed was not found.\n```asciidoc\n= Accepted Family Types =\n[Feline] [Canine] [Avian] [Exotic] [Farm] [Woodland] [Reptile] [Insect] [Penguin] [Aquatic] [Spooky] [Humanoid] [????] [Automaton] [Mystery]\n```\n```asciidoc\n= Accepted Rarity Types =\n[Uncommon] [Rare] [Legendary]\n```",
+            description: "<:warn:459473619613908994> The Egg with the specified details was **not found**. Either the egg is not currently for sale, or you have provided incorrect details!\n```asciidoc\n= Accepted Family Types =\n[Feline] [Canine] [Avian] [Exotic] [Farm] [Woodland] [Reptile] [Insect] [Penguin] [Aquatic] [Spooky] [Humanoid] [????] [Automaton] [Mystery]\n```\n```asciidoc\n= Accepted Rarity Types =\n[Uncommon] [Rare] [Legendary]\n```",
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
