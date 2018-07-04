@@ -576,7 +576,7 @@ var founders = ""
             name: client.user.username,
             icon_url: client.user.avatarURL
           },
-          description: "Realmeye Bot is discord bot for RotMG Players to use for convenience. It makes fetching user and guild info easier and presentable, and overall improves players' experience with the game!\nTo see what commands this bot has to offer, type `/help` in a channel!\nTo invite this bot to your server, type `/invite`",
+          description: "Guill is discord bot for RotMG Players to use for convenience. It makes fetching user and guild info easier and presentable, and overall improves players' experience with the game!\nTo see what commands this bot has to offer, type `/help` in a channel!\nTo invite this bot to your server, type `/invite`",
  					fields: [{
           name: "Framework",
           value: "Discord.js ⇨ [Documentation](https://discord.js.org/#/)"
