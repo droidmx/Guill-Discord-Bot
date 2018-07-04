@@ -76,7 +76,7 @@ if (!chars[0]) {
             text: "© Droid"
           },
           thumbnail: {
-            "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
+            "url": "https://static.drips.pw/rotmg/wiki/Consumable/Other/Char%20Slot%20Unlocker.png"
           }
         }
       });
@@ -441,9 +441,6 @@ var founders = ""
           footer: {
             icon_url: client.user.avatarURL,
             text: "© Droid"
-          },
-          thumbnail: {
-            "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
           }
         }
       });
@@ -538,9 +535,6 @@ var founders = ""
             footer: {
               icon_url: client.user.avatarURL,
               text: "© Droid"
-            },
-            thumbnail: {
-              "url": "https://www.realmeye.com/s/c9/img/eye-big.png"
             }
           }
         });
