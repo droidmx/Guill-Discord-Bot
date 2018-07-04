@@ -17,7 +17,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 
 if (msg.content.startsWith(prefix + 'updateusername')) {
          if (msg.author.id != '368756694114893825') return;	  
-   client.user.setUsername("RealmBot");	
+   client.user.setUsername("Guill");	
      msg.channel.send('successful')	 
    }	   
 if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
