@@ -6,7 +6,7 @@ let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
-  client.user.setActivity('realmeye | /help', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
+  client.user.setActivity('the Nexus | /help', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
 .catch(console.error);
 });
 
@@ -236,6 +236,92 @@ if (!chars[0]) {
 
     }) //endrealmeyechar
   } //end player
+  
+  if (msg.content.toLowerCase().startsWith(prefix + 'egg')) {
+  var rarity = args[1]
+  var type = args[2]
+  if (!rarity) return msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Please provide a pet rarity.\n```asciidoc\n= Accepted Rarity Types =\n[Uncommon] [Rare] [Legendary]\n```",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+ if (!type) return msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Please provide a pet family.\n```asciidoc\n= Accepted Family Types =\n[Feline] [Canine] [Avian] [Exotic] [Farm] [Woodland] [Reptile] [Insect] [Penguin] [Aquatic] [Spooky] [Humanoid] [????] [Automaton] [Mystery]\n```",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+        
+        let eggapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=pets'
+        test['eggcheck'] = 'notfound'
+        snekfetch.get(eggapi).then(p=> {
+        for (i in p.body.item)
+        if (p.body.item[i].name.includes(`${rarity} ${type}`)) {
+        msg.channel.send({
+        embed: {
+          color: 0xFFD0E7,
+          author: {
+            name: "Egg Searcher"
+          },
+          fields: [{
+              name: "Egg Found! <a:eggs:463883553663614978>",
+              value: `${p.boy.item[i].name}`
+            },
+            {
+              name: "Cheapest Location",
+              value: `${p.body.item[i].price} <:coin:463847187957415946> at ${p.body.item[i].cheapest_on}`,
+              inline: true
+            },
+            {
+              name: "Supply",
+              value: `${p.body.item[i].quantity} left`,
+              inline: true
+            },
+            {
+            name: "Time Left",
+            value: `${p.body.item[i]['Time Left']} Minutes`
+            }
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://i.imgur.com/GlWHeLf.gif"
+          }
+        }
+      });
+      test['eggcheck'] = 'found'
+        
+        }
+        if (test['eggcheck'] == 'notfound') return msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> The Egg with the specified detailed was not found.\n```asciidoc\n= Accepted Family Types =\n[Feline] [Canine] [Avian] [Exotic] [Farm] [Woodland] [Reptile] [Insect] [Penguin] [Aquatic] [Spooky] [Humanoid] [????] [Automaton] [Mystery]\n```\n```asciidoc\n= Accepted Rarity Types =\n[Uncommon] [Rare] [Legendary]\n```",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+        
+        
+        })
+  
+  }
 if (msg.content.toLowerCase().startsWith(prefix + 'backpack')) {
 let backpackapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=misc'
 
@@ -529,7 +615,7 @@ var founders = ""
           },
           {
           name: "<a:oryx:462438025956425748> RotMG",
-          value: "```ini\n[player] [chars] [guild] [gmembers] [backpack]```"
+          value: "```ini\n[player] [chars] [guild] [gmembers] [backpack] [egg]```"
           },
           {
           name: "<:info:459473619530285057> Information",
@@ -611,6 +697,18 @@ if (param == 'guild') return msg.channel.send({
           }
         }
 })
+if (param == 'egg') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Egg Searcher**\nFunction: Searches for the egg with the specified details and provides information for the egg!\nUsage: `/egg <rarity> <family>`\n```asciidoc\n= Accepted Family Types =\n[Feline] [Canine] [Avian] [Exotic] [Farm] [Woodland] [Reptile] [Insect] [Penguin] [Aquatic] [Spooky] [Humanoid] [????] [Automaton] [Mystery]\n```\n```asciidoc\n= Accepted Rarity Types =\n[Uncommon] [Rare] [Legendary]\n```",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+/**/
   
   }
   
