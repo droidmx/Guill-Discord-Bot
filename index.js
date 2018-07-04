@@ -15,7 +15,11 @@ client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
 
-
+if (msg.content.startsWith(prefix + 'updateusername')) {
+         if (msg.author.id != '368756694114893825') return;	  
+   client.user.setUsername("RealmBot");	
+     msg.channel.send('successful')	 
+   }	   
 if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
 var charuser = args[1]
 
@@ -267,7 +271,7 @@ if (!chars[0]) {
         test['eggcheck'] = 'notfound'
         snekfetch.get(eggapi).then(p=> {
         for (i in p.body.item)
-        if (p.body.item[i].name.toLowerCase().includes(`${rarity.toLowerCase()}` && `${type.toLowerCase()}`)) {
+        if (p.body.item[i].name.toLowerCase().includes(`${rarity.toLowerCase()} ${type.toLowerCase()}`)) {
         msg.channel.send({
         embed: {
           color: 0xFFD0E7,
