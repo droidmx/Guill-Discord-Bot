@@ -15,11 +15,66 @@ client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
 
-if (msg.content.startsWith(prefix + 'updateusername')) {
-         if (msg.author.id != '368756694114893825') return;	  
-   client.user.setUsername("Guill");	
-     msg.channel.send('successful')	 
-   }
+
+if (msg.content.startsWith('/serverinfo')) {
+   
+
+    msg.guild.fetchMembers();
+    
+    let members = msg.guild.members;
+    let online = members.filter(m => m.user.presence.status === 'online').size
+    const offline = members.filter(m => m.user.presence.status === 'offline').size
+    const dnd = members.filter(m => m.user.presence.status === 'dnd').size
+    const idle = members.filter(m => m.user.presence.status === 'idle').size
+    const streaming = members.filter(m => m.user.presence.game ? m.user.presence.game.streaming === true : false).size
+    online = online - streaming;
+
+
+  //  message.channel.send(`<a:online:464867216668753931> ${online}\n<a:idle:464867250269061120> ${idle} \n<a:dnd:464867303176142849> ${dnd}\n<a:streaming:464867426090090504> ${streaming}\n<a:offline:464867377767645195> ${offline}`);
+
+    //getting roles and formatting it
+    const roles = msg.guild.roles.map(r => r.id)
+    let roleLength = roles.length;
+    var i = 0;
+    var RoleList = "";
+    for(; i < roleLength; i++) {
+      RoleList += "<@&" + roles[i] + "> | "
+    }
+    //getting server age
+    var now = new Date().getTime();
+    var countDownDate = msg.guild.createdTimestamp;
+    var distance = now - countDownDate;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let time = days + "d " + hours + "h " + minutes + "m ago";
+
+    //getting Emojis
+    const emojiList = msg.guild.emojis.map(e=>e.toString()).join(" ");
+
+    //checking if embed is to long
+    if (RoleList.length > 1000) {
+        RoleList = "Too many to count <:ono:464908543984795648>"
+    }
+
+    //sending the info
+    const info = new Discord.RichEmbed()
+        .setColor(0xffffff)
+        .setFooter(" © Droid & Co", client.user.avatarURL)
+        .setTimestamp()
+        .addTitle('Server Info')
+        .addField("Name" , msg.guild.name, true)
+        .addField("Region" , msg.guild.region, true)
+        .addField("Owner" , "<@" + msg.guild.ownerID + ">")
+        .addField("Created", time)
+        .addField("Members (" + msg.guild.memberCount + ")", "\n<a:online:464867216668753931> " + online + "\n<a:idle:464867250269061120> "+ idle + "\n<a:dnd:464867303176142849> "+ dnd + "\n<a:streaming:464867426090090504>"  + streaming + "\n<a:offline:464867377767645195> " + offline, true)
+        .addField("Verification Level", msg.guild.verificationLevel,true)
+        .addField("Roles", RoleList)
+        .addField("Emojis" , emojiList)
+  msg.channel.send(info).catch(error => {});
+
+    //<a:streaming:464867426090090504>
+  }
   
   if (msg.content.startsWith(prefix + 'stats')) {
     msg.channel.send(`\`\`\`asciidoc\n= STATISTICS =
@@ -597,7 +652,11 @@ var founders = ""
           {
           name: "Developer",
           value: "`~Droid~#5799` ⇨ [Realmeye Profile](https://www.realmeye.com/player/droidmxbro) | [Github](https://github.com/droidmx)"
-          }
+          },
+                   {
+                     name: "Special Thanks to",
+                     value: "`XkijuX#6667` for designing the `/serverinfo` command"
+                   }
           
           
           ],
@@ -626,7 +685,7 @@ var founders = ""
           },
           {
           name: "<:info:459473619530285057> Information",
-          value: "```ini\n[help] [invite] [info]```"
+          value: "```ini\n[help] [invite] [info] [stats] [serverinfo]```"
           }
           
           
@@ -642,6 +701,28 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+    if (param == 'stats') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Statistics Command**\nFunction: Get some statistics about the bot and it's current usage!\nUsage: `/stats`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+    if (param == 'serverinfo') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Server-Info Command**\nFunction: Show some information about the server you're in!\nUsage: `/serverinfo`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
