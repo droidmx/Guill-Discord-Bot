@@ -62,7 +62,7 @@ if (msg.content.startsWith('/serverinfo')) {
         .setColor(0xffffff)
         .setFooter(" © Droid & Co", client.user.avatarURL)
         .setTimestamp()
-        .addTitle('Server Info')
+        .setTitle('Server Info')
         .addField("Name" , msg.guild.name, true)
         .addField("Region" , msg.guild.region, true)
         .addField("Owner" , "<@" + msg.guild.ownerID + ">")
