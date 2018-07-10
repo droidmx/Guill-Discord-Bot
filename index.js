@@ -315,13 +315,14 @@ if (!chars[0]) {
         }
         
         })
+        console.log(keyslist)
         msg.channel.send({
           embed: {
             color: 0xEAC70D,
             author: {
             name: "List of Available Keys"
           },
-            description: keyslist,
+            description: `${keyslist}`,
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
