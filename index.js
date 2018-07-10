@@ -322,7 +322,8 @@ if (!chars[0]) {
         let keyapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
         snekfetch.get(keyapi).then(k=> {
         for (i in k.body.item) {
-        if (k.body.item[i].toLowerCase().includes(keysearch.toLowerCase())) {
+        var currkey = k.body.item[i]
+        if (currkey.toLowerCase().includes(keysearch.toLowerCase())) {
         msg.channel.send({
         embed: {
           color: 0xEAC70D,
