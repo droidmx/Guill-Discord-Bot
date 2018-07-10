@@ -307,10 +307,10 @@ if (!chars[0]) {
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keys')) {
  let keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
- var keyslist = ''
+ var kkk = ''
         snekfetch.get(keysapi).then(k=> { 
         for (i in k.body.item) {
-        keyslist += `${k.body.item[i].name} | `
+        kkk += `${k.body.item[i].name} | `
         console.log('key added')
         }
         
@@ -322,7 +322,7 @@ if (!chars[0]) {
             author: {
             name: "List of Available Keys"
           },
-            description: `${keyslist}`,
+            description: `${kkk}`,
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
@@ -875,7 +875,7 @@ if (param == 'player') return msg.channel.send({
 if (param == 'keys') return msg.channel.send({
   embed: {
   color: 0x000000,
-  description: "**Keys Command**\nFunction: Sends a list of keys available for purchase at the time.\nUsage: `/keys`\n\nNote: Use `/keys <name of key>` for more information on the particular key",
+  description: "**Keys Command**\nFunction: Sends a list of keys available for purchase at the time.\nUsage: `/keys`\n\nNote: Use `/key <name of key>` for more information on the particular key",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
