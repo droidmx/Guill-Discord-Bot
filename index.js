@@ -305,7 +305,39 @@ if (!chars[0]) {
 
     }) //endrealmeyechar
   } //end player
+  if (msg.content.toLowerCase().startsWith(prefix + 'keys')) {
+ let keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
+ var keyslist = ''
+        snekfetch.get(keysapi).then(k=> { 
+        for (i in k.body.item) {
+        keyslist += `${k.body.item[i].name} | `
+        
+        }
+        
+        })
+        msg.channel.send({
+          embed: {
+            color: 0xEAC70D,
+            author: {
+            name: "List of Available Keys"
+          },
+            description: keyslist,
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+
+
+}
   if (msg.content.toLowerCase().startsWith(prefix + 'key')) {
+ 
+ // for makeing sure key cmd doesnt cross with keys cmd
+ if (msg.content.toLowerCase().startsWith(prefix + 'keys')) return;
+ 
+ 
   test['keycheck'] = 'notfound'
   var keysearch = args.slice(1).join(' ');
   if (!keysearch) return msg.channel.send({
@@ -790,10 +822,6 @@ if (!question) return msg.channel.send({
             }
           }
         })
-
-
-  
-  
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'ping')) {
     msg.channel.send("Pinging... :signal_strength:").then(sent => {
@@ -812,7 +840,7 @@ if (!question) return msg.channel.send({
           },
           {
           name: "<a:oryx:466283523691642890> RotMG",
-          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (key)```"
+          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (key) (keys)```"
           },
           {
           name: "<a:fundie:466321983152586753> Fun",
@@ -836,6 +864,17 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'keys') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Keys Command**\nFunction: Sends a list of keys available for purchase at the time.\nUsage: `/keys`\n\nNote: Use `/keys <name of key>` for more information on the particular key",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
