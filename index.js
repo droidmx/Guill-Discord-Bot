@@ -308,14 +308,14 @@ if (!chars[0]) {
   if (msg.content.toLowerCase().startsWith(prefix + 'keys')) {
  let keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
  var kkk = ''
-        snekfetch.get(keysapi).then(k=> { 
-        for (i in k.body.item) {
-        kkk += `${k.body.item[i].name} | `
+        snekfetch.get(keysapi).then(s=> { 
+        for (i in s.body.item) {
+        kkk += `${s.body.item[i].name} | `
         console.log('key added')
         }
         
         })
-        console.log(keyslist)
+        console.log(kkk)
         msg.channel.send({
           embed: {
             color: 0xEAC70D,
