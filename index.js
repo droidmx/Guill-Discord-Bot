@@ -306,13 +306,13 @@ if (!chars[0]) {
     }) //endrealmeyechar
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
- let keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
- var keylistattempt = "";
+ var keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
+ var keylistattempt = "ok sir";
         snekfetch.get(keysapi).then(s=> { 
         for (i in s.body.item) {
         keylistattempt = keylistattempt + s.body.item[i].name
         keylistattempt = keylistattempt + " | "
-        console.log(s.body.item[i].name)
+ 
         }
        
         
