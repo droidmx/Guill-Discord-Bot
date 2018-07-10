@@ -745,6 +745,56 @@ var founders = ""
 })
   
   }
+  if (msg.content.toLowerCase().startsWith(prefix + '8ball')) {
+  var sayings = ["It is certain",
+										"It is decidedly so",
+										"Without a doubt",
+										"Yes, definitely",
+										"You may rely on it",
+										"As I see it, yes",
+										"Most likely",
+										"Outlook good",
+										"Yes",
+										"Signs point to yes",
+										"Reply hazy try again",
+										"Ask again later",
+										"Better not tell you now",
+										"Cannot predict now",
+										"Concentrate and ask again",
+										"Don't count on it",
+										"My reply is no",
+										"My sources say no",
+										"Outlook not so good",
+"Very doubtful"];
+var question = args.slice(1).join(' ');
+if (!question) return msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Please ask a question for the :8ball:",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+        var result = Math.floor((Math.random() * sayings.length) + 0);
+        msg.channel.send({
+          embed: {
+            color: 0x000000,
+            description: `<:signquestionicon:459473621304213525> ${question}\n<a:ult8ball:466317137951326208> ${sayings[result]}`,
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+
+
+  
+  
+  }
   if (msg.content.toLowerCase().startsWith(prefix + 'help')) {
   
   var param = args[1]
@@ -757,11 +807,15 @@ var founders = ""
           },
           {
           name: "<a:oryx:466283523691642890> RotMG",
-          value: "```ini\n[player] [chars] [guild] [gmembers] [backpack] [egg] [key]```"
+          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (key)```"
           },
           {
+          name: "<a:fundie:466321983152586753> Fun",
+          value: "```css\n(8ball)```"
+          }
+          {
           name: "<:info:459473619530285057> Information",
-          value: "```ini\n[help] [invite] [info] [stats] [serverinfo]```"
+          value: "```css\n(help) (info) (stats) (serverinfo) (invite)```"
           }
           
           
@@ -777,6 +831,17 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == '8ball') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**8ball Command**\nFunction: Asks the magical <a:ult8ball:466317137951326208> a question!\nUsage: `/8ball <question>`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
@@ -883,7 +948,16 @@ if (param == 'egg') return msg.channel.send({
           }
         }
 })
-/**/
+msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Please provide a valid command name.\nType `/help` for a list of commands",
+            timestamp: new Date(),
+            footer: {
+              text: "© Droid & Co."
+            }
+          }
+        })
   
   }
   
