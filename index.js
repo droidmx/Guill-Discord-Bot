@@ -782,7 +782,7 @@ if (!question) return msg.channel.send({
         msg.channel.send({
           embed: {
             color: 0x000000,
-            description: `<:signquestionicon:459473621304213525> ${question}\n<a:ult8ball:466317137951326208> ${sayings[result]}`,
+            description: `<:signquestionicon:459473621304213525> ${question}\n\n:8ball: ${sayings[result]}`,
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
@@ -795,6 +795,11 @@ if (!question) return msg.channel.send({
   
   
   }
+  if (msg.content.toLowerCase().startsWith(prefix + 'ping')) {
+    msg.channel.send("Pinging... :signal_strength:").then(sent => {
+      sent.edit(`:ping_pong: Pong! | Time Taken: ${sent.createdTimestamp - msg.createdTimestamp}ms`)
+    })
+}
   if (msg.content.toLowerCase().startsWith(prefix + 'help')) {
   
   var param = args[1]
@@ -811,7 +816,7 @@ if (!question) return msg.channel.send({
           },
           {
           name: "<a:fundie:466321983152586753> Fun",
-          value: "```css\n(8ball)```"
+          value: "```css\n(8ball) (ping)```"
           },
           {
           name: "<:info:459473619530285057> Information",
@@ -831,6 +836,17 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'ping') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Ping Command**\nFunction: Checks if bot is online and returns the signal delay.\nUsage: `/ping`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
