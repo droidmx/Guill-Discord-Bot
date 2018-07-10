@@ -311,7 +311,7 @@ if (!chars[0]) {
         snekfetch.get(keysapi).then(k=> { 
         for (i in k.body.item) {
         keyslist += `${k.body.item[i].name} | `
-        
+        console.log('key added')
         }
         
         })
@@ -335,7 +335,7 @@ if (!chars[0]) {
   if (msg.content.toLowerCase().startsWith(prefix + 'key')) {
  
  // for makeing sure key cmd doesnt cross with keys cmd
- if (msg.content.toLowerCase().startsWith(prefix + 'keys')) return;
+ if (msg.content.toLowerCase().startsWith(prefix + 'keys')) return console.log('returned')
  
  
   test['keycheck'] = 'notfound'
