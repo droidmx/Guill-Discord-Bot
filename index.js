@@ -306,25 +306,26 @@ if (!chars[0]) {
     }) //endrealmeyechar
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
- var keylistattempt = "";
-        snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=> { 
+ var urmomisfuckinggay = "";
+        snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=>  
+        var i;
         for (i in s.body.item) {
-        keylistattempt += s.body.item[i].name
-        keylistattempt += " | "
+        urmomisfuckinggay += s.body.item[i].name
+        urmomisfuckinggay += " | "
  
         }
        
         
-        })
+       )
         
-        console.log(keylistattempt)
+        console.log(urmomisfuckinggay)
         msg.channel.send({
           embed: {
             color: 0xEAC70D,
             author: {
             name: "List of Available Keys"
           },
-            description: keylistattempt,
+            description: urmomisfuckinggay,
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
