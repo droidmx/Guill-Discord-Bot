@@ -812,7 +812,7 @@ if (!question) return msg.channel.send({
           {
           name: "<a:fundie:466321983152586753> Fun",
           value: "```css\n(8ball)```"
-          }
+          },
           {
           name: "<:info:459473619530285057> Information",
           value: "```css\n(help) (info) (stats) (serverinfo) (invite)```"
