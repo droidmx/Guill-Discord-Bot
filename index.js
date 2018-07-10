@@ -307,22 +307,23 @@ if (!chars[0]) {
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
  let keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
- var kkk = "";
+ var keylistattempt = "";
         snekfetch.get(keysapi).then(s=> { 
         for (i in s.body.item) {
-        kkk += `${s.body.item[i].name} | `
+        keylistattempt += s.body.item[i].name
+        keylistattempt += " | "
         console.log(s.body.item[i].name)
         }
         
         })
-        console.log(kkk)
+        console.log(keylistattempt)
         msg.channel.send({
           embed: {
             color: 0xEAC70D,
             author: {
             name: "List of Available Keys"
           },
-            description: `${kkk}`,
+            description: keylistattempt,
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
