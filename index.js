@@ -305,7 +305,80 @@ if (!chars[0]) {
 
     }) //endrealmeyechar
   } //end player
+  if (msg.content.toLowerCase().startsWith(prefix + 'key')) {
+  test['keycheck'] = 'notfound'
+  var keysearch = args.slice(1).join(' ');
+  if (!keysearch) return msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> Please provide a key type to search for!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+        let keyapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
+        snekfetch.get(keyapi).then(k=> {
+        for (i in k.body.item) {
+        if (k.body.item[i].toLowerCase().includes(keysearch.toLowerCase())) {
+        msg.channel.send({
+        embed: {
+          color: 0xEAC70D,
+          author: {
+            name: "Key Searcher"
+          },
+          fields: [{
+              name: "Key Found! <:myskey:466286634590142464>",
+              value: `${k.body.item[i].name}`
+            },
+            {
+              name: "Cheapest Location",
+              value: `${k.body.item[i].price} <:coin:463847187957415946> at ${k.body.item[i].cheapest_on}`,
+              inline: true
+            },
+            {
+              name: "Supply",
+              value: `${k.body.item[i].quantity} left`,
+              inline: true
+            },
+            {
+            name: "Time Left",
+            value: `${k.body.item[i]['Time Left']} Minutes`
+            }
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://static.drips.pw/rotmg/wiki/Consumable/Keys/Diamond%20Mystery%20Key.png"
+          }
+        }
+      });
+        test['keycheck'] = 'found'
+        
+        }
+        
+        }
+        if (test['keycheck'] == 'notfound') return msg.channel.send({
+          embed: {
+            color: 0xFF0000,
+            description: "<:warn:459473619613908994> The Key with the specified name was **not found**. Either the key is not currently for sale, or you have provided incorrect details!",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "© Droid & Co."
+            }
+          }
+        })
+        
+        
+        })
   
+  }
   if (msg.content.toLowerCase().startsWith(prefix + 'egg')) {
   var rarity = args[1]
   var type = args[2]
@@ -391,6 +464,7 @@ if (!chars[0]) {
         })
   
   }
+  
 if (msg.content.toLowerCase().startsWith(prefix + 'backpack')) {
 let backpackapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=misc'
 
@@ -681,8 +755,8 @@ var founders = ""
           value: "To get help for a specific command, use `/help <command>`"
           },
           {
-          name: "<a:oryx:462438025956425748> RotMG",
-          value: "```ini\n[player] [chars] [guild] [gmembers] [backpack] [egg]```"
+          name: "<a:oryx:466283523691642890> RotMG",
+          value: "```ini\n[player] [chars] [guild] [gmembers] [backpack] [egg] [key]```"
           },
           {
           name: "<:info:459473619530285057> Information",
@@ -779,6 +853,17 @@ if (param == 'guild') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Invite Command**\nFunction: Sends an invite link for the bot\nUsage: `/invite`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'key') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Key Searcher**\nFunction: Searches for a key with the specified name and provides information on sale location\nUsage: `/key <key name>`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
