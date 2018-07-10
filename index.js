@@ -310,13 +310,14 @@ if (!chars[0]) {
  var keylistattempt = "";
         snekfetch.get(keysapi).then(s=> { 
         for (i in s.body.item) {
-        keylistattempt += s.body.item[i].name
-        keylistattempt += " | "
+        keylistattempt = keylistattempt + s.body.item[i].name
+        keylistattempt = keylistattempt + " | "
         console.log(s.body.item[i].name)
         }
-        keylistattempt += 'testing this final time'
+       
         
         })
+        
         console.log(keylistattempt)
         msg.channel.send({
           embed: {
