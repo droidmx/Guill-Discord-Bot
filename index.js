@@ -305,7 +305,7 @@ if (!chars[0]) {
 
     }) //endrealmeyechar
   } //end player
-  if (msg.content.toLowerCase().startsWith(prefix + 'keys')) {
+  if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
  let keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
  var kkk = ''
         snekfetch.get(keysapi).then(s=> { 
@@ -333,10 +333,10 @@ if (!chars[0]) {
 
 
 }
-  if (msg.content.toLowerCase().startsWith(prefix + 'key')) {
+  if (msg.content.toLowerCase().startsWith(prefix + 'keysearch')) {
  
  // for makeing sure key cmd doesnt cross with keys cmd
- if (msg.content.toLowerCase().startsWith(prefix + 'keys')) return console.log('returned')
+
  
  
   test['keycheck'] = 'notfound'
@@ -841,7 +841,7 @@ if (!question) return msg.channel.send({
           },
           {
           name: "<a:oryx:466283523691642890> RotMG",
-          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (key) (keys)```"
+          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (keysearch) (keylist)```"
           },
           {
           name: "<a:fundie:466321983152586753> Fun",
@@ -872,7 +872,7 @@ if (param == 'player') return msg.channel.send({
           }
         }
 })
-if (param == 'keys') return msg.channel.send({
+if (param == 'keylist') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Keys Command**\nFunction: Sends a list of keys available for purchase at the time.\nUsage: `/keys`\n\nNote: Use `/key <name of key>` for more information on the particular key",
@@ -982,7 +982,7 @@ if (param == 'guild') return msg.channel.send({
           }
         }
 })
-if (param == 'key') return msg.channel.send({
+if (param == 'keysearch') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Key Searcher**\nFunction: Searches for a key with the specified name and provides information on sale location\nUsage: `/key <key name>`",
