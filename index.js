@@ -307,16 +307,22 @@ if (!chars[0]) {
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
  var urmomisfuckinggay = "";
-        snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=>  
+        snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=>  {
         var i;
         for (i in s.body.item) {
+        if (!test['FUCKIGNNIGGERS']) {
         urmomisfuckinggay += s.body.item[i].name
         urmomisfuckinggay += " | "
+        }else {
+        urmomisfuckinggay += s.body.item[i].name
+        urmomisfuckinggay += " | "
+        
+        }
  
         }
        
         
-       )
+       });
         
         console.log(urmomisfuckinggay)
         msg.channel.send({
