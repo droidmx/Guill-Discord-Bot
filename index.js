@@ -207,9 +207,10 @@ if (!chars[0]) {
           test['h'] = `${leva} ${abia} • ${levb} ${abib} • ${levc} ${abic}`
         }
         console.log(test['h'])
-        fs.writeFile('./test.json', JSON.stringify(test), console.error);
+        
       } else {
         test['h'] = `hidden`
+        console.log(test['h'])
       }
     }) // end petinfo
     snekfetch.get(rapii).then(r => {
@@ -801,5 +802,5 @@ if (param == 'egg') return msg.channel.send({
   }
   
 }) // end message handler
-
+fs.writeFile('./test.json', JSON.stringify(test), console.error);
 client.login(process.env.BOT_TOKEN)
