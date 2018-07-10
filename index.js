@@ -322,7 +322,7 @@ if (!chars[0]) {
         let keyapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
         snekfetch.get(keyapi).then(k=> {
         for (i in k.body.item) {
-        var currkey = k.body.item[i]
+        var currkey = k.body.item[i].name
         if (currkey.toLowerCase().includes(keysearch.toLowerCase())) {
         msg.channel.send({
         embed: {
