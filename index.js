@@ -314,6 +314,7 @@ if (!chars[0]) {
         keylistattempt += " | "
         console.log(s.body.item[i].name)
         }
+        keylistattempt += 'testing this final time'
         
         })
         console.log(keylistattempt)
