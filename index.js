@@ -360,7 +360,7 @@ if (!chars[0]) {
         }
       });
         test['keycheck'] = 'found'
-        
+        return;
         }
         
         }
