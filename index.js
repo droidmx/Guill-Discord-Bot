@@ -306,12 +306,11 @@ if (!chars[0]) {
     }) //endrealmeyechar
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
- var keysapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys'
- var keylistattempt = "ok sir";
-        snekfetch.get(keysapi).then(s=> { 
+ var keylistattempt = "";
+        snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=> { 
         for (i in s.body.item) {
-        keylistattempt = keylistattempt + s.body.item[i].name
-        keylistattempt = keylistattempt + " | "
+        keylistattempt += s.body.item[i].name
+        keylistattempt += " | "
  
         }
        
