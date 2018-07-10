@@ -311,6 +311,7 @@ if (!chars[0]) {
         snekfetch.get(keysapi).then(s=> { 
         for (i in s.body.item) {
         kkk += `${s.body.item[i].name} | `
+        console.log(s.body.item[i].name)
         }
         
         })
