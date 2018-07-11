@@ -849,7 +849,7 @@ if (!question) return msg.channel.send({
           value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (key) (keylist)```"
           },
           {
-          name: "<a:fundie:466321983152586753> Fun",
+          name: "<a:finaldundie:466655044956061706> Fun",
           value: "```css\n(8ball) (ping)```"
           },
           {
@@ -880,7 +880,7 @@ if (param == 'player') return msg.channel.send({
 if (param == 'keylist') return msg.channel.send({
   embed: {
   color: 0x000000,
-  description: "**Keys Command**\nFunction: Sends a list of keys available for purchase at the time.\nUsage: `/keys`\n\nNote: Use `/key <name of key>` for more information on the particular key",
+  description: "**Keys Command**\nFunction: Sends a list of keys available for purchase at the time.\nUsage: `/keylist`\n\nNote: Use `/key <name of key>` for more information on the particular key",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
