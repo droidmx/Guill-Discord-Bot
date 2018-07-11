@@ -51,15 +51,18 @@ if (msg.content.startsWith('/serverinfo')) {
 
     //getting Emojis
     const emojiList = msg.guild.emojis.map(e=>e.toString()).join(" ");
+    if (emojiList.length > 1000) {
+    emojiList = "Too many emojis <:oof:466692716563005452>"
+    }
 
     //checking if embed is to long
     if (RoleList.length > 1000) {
-        RoleList = "Too many to count <:ono:464908543984795648>"
+        RoleList = "Too many roles <:ono:464908543984795648>"
     }
 
     //sending the info
     const info = new Discord.RichEmbed()
-        .setColor(0xffffff)
+        .setColor(0x000000)
         .setFooter(" © Droid & Co", client.user.avatarURL)
         .setTimestamp()
         .setTitle('Server Info')
@@ -83,7 +86,80 @@ if (msg.content.startsWith('/serverinfo')) {
 • Channels   :: ${client.channels.size.toLocaleString()}\`\`\``);
 }
     
-  
+  if (msg.content.toLowerCase().startsWith(prefix + 'suggest')) {
+  var suggestion = args.slice(1).join(' ');
+  if (!suggestion) return msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You did not provide a suggestion!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      msg.delete();
+      msg.channel.send({
+        embed: {
+          color: 0x32CD32,
+          description: "<:boxouticon:459473618645286919> Your suggestion has been sent! Thanks for taking the time to review me!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      client.channels.get('466727960624365569').send({
+        embed: {
+          color: 0x32CD32,
+          description: `<:signaddicon:459473619618365441> **New Suggestion**\n\nUser: ${msg.author.tag} | ${msg.author}\n\nSuggestion: ${suggestion}`,
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+  }
+  if (msg.content.toLowerCase().startsWith(prefix + 'feedback')) {
+  var feedback = args.slice(1).join(' ');
+  if (!feedback) return msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You did not provide any feedback!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      msg.delete();
+      msg.channel.send({
+        embed: {
+          color: 0x32CD32,
+          description: "<:boxouticon:459473618645286919> Your feedback has been sent! Thanks for taking the time to review me!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      client.channels.get('466728003397746700').send({
+        embed: {
+          color: 0x32CD32,
+          description: `<:signaddicon:459473619618365441> **New Feedback**\n\nUser: ${msg.author.tag} | ${msg.author}\n\nSuggestion: ${feedback}`,
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+  }
 if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
 var charuser = args[1]
 
@@ -853,6 +929,10 @@ if (!question) return msg.channel.send({
           value: "```css\n(8ball) (ping)```"
           },
           {
+          name: "<:terminalicon:459473619735674890> Development",
+          value: "```css\n(suggest) (feedback)```"
+          },
+          {
           name: "<:info:459473619530285057> Information",
           value: "```css\n(help) (info) (stats) (serverinfo) (invite)```"
           }
@@ -870,6 +950,28 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'suggest') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Suggestion Command**\nFunction: Sends your suggestion to the support server for review!\nUsage: `/suggest <suggestion>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'feedback') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Feedback Command**\nFunction: Sends your feedback to the support server for review!\nUsage: `/feedback <feedback>`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
