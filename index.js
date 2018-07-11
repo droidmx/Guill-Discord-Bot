@@ -312,8 +312,8 @@ if (!chars[0]) {
         var keylist = "";
         for (i in s.body.item) {
       
-        keylist += s.body.item[i].name
-        keylist += " | "
+        keylist += `**${s.body.item[i].name}**`
+        keylist += ", "
         }
        msg.channel.send({
           embed: {
