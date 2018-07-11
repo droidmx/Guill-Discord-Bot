@@ -309,29 +309,19 @@ if (!chars[0]) {
 
         snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=>  {
         var i;
-        var urmomisfuckinggay = "";
+        var keylist = "";
         for (i in s.body.item) {
       
-        urmomisfuckinggay += s.body.item[i].name
-        urmomisfuckinggay += " | "
-
-        
-        
-        
- 
+        keylist += s.body.item[i].name
+        keylist += " | "
         }
-       
-        
-       });
-        
-        console.log(urmomisfuckinggay)
-        msg.channel.send({
+       msg.channel.send({
           embed: {
             color: 0xEAC70D,
             author: {
             name: "List of Available Keys"
           },
-            description: urmomisfuckinggay,
+            description: keylist,
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
@@ -339,12 +329,18 @@ if (!chars[0]) {
             }
           }
         })
+        
+       });
+        
+
+        
 
 
 }
-  if (msg.content.toLowerCase().startsWith(prefix + 'keysearch')) {
+  if (msg.content.toLowerCase().startsWith(prefix + 'key')) {
  
  // for makeing sure key cmd doesnt cross with keys cmd
+ if (msg.content.toLowerCase().startswith(prefix + 'keylist')) return;
 
  
  
@@ -850,7 +846,7 @@ if (!question) return msg.channel.send({
           },
           {
           name: "<a:oryx:466283523691642890> RotMG",
-          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (keysearch) (keylist)```"
+          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (key) (keylist)```"
           },
           {
           name: "<a:fundie:466321983152586753> Fun",
@@ -991,7 +987,7 @@ if (param == 'guild') return msg.channel.send({
           }
         }
 })
-if (param == 'keysearch') return msg.channel.send({
+if (param == 'key') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Key Searcher**\nFunction: Searches for a key with the specified name and provides information on sale location\nUsage: `/key <key name>`",
