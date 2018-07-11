@@ -306,18 +306,18 @@ if (!chars[0]) {
     }) //endrealmeyechar
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
- var urmomisfuckinggay = "";
+
         snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=>  {
         var i;
+        var urmomisfuckinggay = "";
         for (i in s.body.item) {
-        if (!test['FUCKIGNNIGGERS']) {
+      
         urmomisfuckinggay += s.body.item[i].name
         urmomisfuckinggay += " | "
-        }else {
-        urmomisfuckinggay += s.body.item[i].name
-        urmomisfuckinggay += " | "
+
         
-        }
+        
+        
  
         }
        
