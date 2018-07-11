@@ -50,7 +50,7 @@ if (msg.content.startsWith('/serverinfo')) {
     let time = days + "d " + hours + "h " + minutes + "m ago";
 
     //getting Emojis
-    const emojiList = msg.guild.emojis.map(e=>e.toString()).join(" ");
+    var emojiList = msg.guild.emojis.map(e=>e.toString()).join(" ");
     if (emojiList.length > 1000) {
     emojiList = "Too many emojis <:oof:466692716563005452>"
     }
