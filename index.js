@@ -9,13 +9,34 @@ client.on('ready', () => {
   client.user.setActivity('the Nexus | /help', { type: 'WATCHING' }).then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
 .catch(console.error);
 });
+client.on('guildMemberAdd', member => {
 
+if (member.guild.id == '466690926702755841') {
+    var memberrole = member.guild.roles.find('name', 'Initiates');
+    member.addRole(memberrole)
+client.channels.get('466746073822527488').send(`Welcome ${member} to Guill's Support Server!`)
+}
+})
 const prefix = '/'
 client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
 
+if (msg.content.toLowerCase().startsWith(prefix + 'addemoji')) {
+   if (msg.author.id != '368756694114893825') return; 
+    let guild = msg.guild;
+    let toAdd = args[2];
+    let title = args[1];
 
+    if(!title || !toAdd) {
+        return msg.channel.send('Please provide name and url for the emoji to add. Ex: >>addemoji <name> <url>');
+    } else {
+        guild.createEmoji(toAdd, title)
+        .then(emoji => msg.react(emoji))
+        .catch(console.log('Something went wrong.'));
+      
+    }
+  }
 if (msg.content.startsWith('/serverinfo')) {
    
 
