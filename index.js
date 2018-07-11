@@ -52,7 +52,7 @@ if (msg.content.startsWith('/serverinfo')) {
     //getting Emojis
     var emojiList = msg.guild.emojis.map(e=>e.toString()).join(" ");
     if (emojiList.length > 1000) {
-    emojiList = "Too many emojis <:oof:466692716563005452>"
+    var emojiList = "Too many emojis <:oof:466692716563005452>"
     }
 
     //checking if embed is to long
