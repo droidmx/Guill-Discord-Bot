@@ -14,7 +14,7 @@ client.on('guildMemberAdd', member => {
 if (member.guild.id == '466690926702755841') {
     var memberrole = member.guild.roles.find('name', 'Initiates');
     member.addRole(memberrole)
-client.channels.get('466746073822527488').send(`Welcome ${member} to Guill's Support Server!`)
+client.channels.get('466746073822527488').send(`Welcome ${member} to Guill's Support Server <:guill:466746583271211009>!`)
 }
 })
 const prefix = '/'
