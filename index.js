@@ -340,7 +340,7 @@ if (!chars[0]) {
   if (msg.content.toLowerCase().startsWith(prefix + 'key')) {
  
  // for makeing sure key cmd doesnt cross with keys cmd
- if (msg.content.toLowerCase().startswith(prefix + 'keylist')) return;
+ if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) return;
 
  
  
