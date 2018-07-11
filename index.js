@@ -16,7 +16,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
   let args = msg.content.split(" ");
 
 
-if (msg.content.startsWith('/serverinfo')) {
+if (msg.content.toLowerCase().startsWith('/serverinfo')) {
    
 
     msg.guild.fetchMembers();
@@ -52,7 +52,7 @@ if (msg.content.startsWith('/serverinfo')) {
     //getting Emojis
     var emojiList = msg.guild.emojis.map(e=>e.toString()).join(" ");
     if (emojiList.length > 1000) {
-    var emojiList = "Too many emojis <:oof:466692716563005452>"
+    emojiList = "Too many emojis <:oof:466692716563005452>"
     }
 
     //checking if embed is to long
