@@ -871,6 +871,20 @@ var founders = ""
         }
 })
   }
+  //[Guill's Support Server](https://discord.gg/3Gby6sT)
+  if (msg.content.toLowerCase().startsWith(prefix + 'support')) {
+  msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "Click [here](https://discordapp.com/api/oauth2/authorize?client_id=462681278639243274&permissions=346112&scope=bot) to join the support server!",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+  }
   
   if (msg.content.toLowerCase().startsWith(prefix + 'info')) {
   msg.channel.send({
@@ -893,6 +907,10 @@ var founders = ""
           name: "Developer",
           value: "`~Droid~#5799` ⇨ [Realmeye Profile](https://www.realmeye.com/player/droidmxbro) | [Github](https://github.com/droidmx)"
           },
+          {
+                     name: "Support Server",
+                     value: "Invite Link ⇨ [Guill's Support Server](https://discord.gg/3Gby6sT)"
+                   },
                    {
                      name: "Special Thanks to",
                      value: "`XkijuX#6667` for designing the `/serverinfo` command"
@@ -980,7 +998,7 @@ if (!question) return msg.channel.send({
           },
           {
           name: "<:terminalicon:459473619735674890> Development",
-          value: "```css\n(suggest) (feedback)```"
+          value: "```css\n(suggest) (feedback) (support)```"
           },
           {
           name: "<:info:459473619530285057> Information",
@@ -1000,6 +1018,17 @@ if (param == 'player') return msg.channel.send({
   embed: {
   color: 0x000000,
   description: "**Player Command**\nFunction: Gets a player's data through Realmeye\nUsage: `/player <Rotmg Username>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'support') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Support Command**\nFunction: Provides an invite link for the support server!\nUsage: `/support`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
