@@ -273,7 +273,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   if (c.body.characters[i].equipment[j] == 'Backpack') {
   equipment += '<:backpack:462699732884783134>'
   }else{
-  equipment += `**${c.body.characters[i].equipment[j]}**\n`
+  equipment += `${c.body.characters[i].equipment[j]}\n`
   }
   }
   msg.channel.send({
@@ -288,7 +288,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
             },
             {
               name: "Fame",
-              value: `${c.body.characters[i].fame}`,
+              value: `${c.body.characters[i].fame} <:fame:466794191494578196>`,
               inline: true
             },
             {
@@ -311,6 +311,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
           }
         }
 });
+test['charcheck'] = 'found'
   }
   
   }
