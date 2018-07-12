@@ -29,6 +29,7 @@ function sleep(milliseconds) {
 }
 client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
+  if (!msg.content.startsWith(prefix)) return;
   let args = msg.content.split(" ");
   
   if (msg.channel.type == 'dm') {
@@ -1406,7 +1407,7 @@ msg.channel.send({
         setTimeout(() => {
           // Removes the user from the set after a minute
           talkedRecently.delete(msg.author.id);
-        }, 60000);
+        }, 2000);
     }
 }) // end message handler
 fs.writeFile('./test.json', JSON.stringify(test), console.error);
