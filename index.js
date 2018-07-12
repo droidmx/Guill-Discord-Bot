@@ -49,6 +49,8 @@ client.on('message', async msg => { // START MESSAGE HANDLER
       client.channels.get('466815252131086342').send(`${msg.author.username} tried to DM me! \`[${moment().format("LT")}]\``)
       return;
       }
+    
+     
 if (talkedRecently.has(msg.author.id)) {
             msg.channel.send({
         embed: {
@@ -64,6 +66,10 @@ if (talkedRecently.has(msg.author.id)) {
       console.log(`${msg.author.username} was put on cooldown!`)
       client.channels.get('466815252131086342').send(`${msg.author.username} was put on cooldown!`)
     } else {
+    
+     if (msg.channel.id == '466730978971484171') return msg.reply('No commands in general chat <:reeeee:467041346130018305>, Go to <#466731030338994176>!')
+    
+    
 if (msg.content.toLowerCase().startsWith(prefix + 'invitelinks')) {
 if (msg.author.id != '368756694114893825') return; 
 var allguilds = client.guilds.array();
