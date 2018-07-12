@@ -46,7 +46,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         }
       })
       console.log(`${msg.author.username} tried to DM me!`)
-      client.channels.get('466815252131086342').send(`${msg.author.username} tried to DM me! \`[${moment().format("LT")}]\``)
+      client.channels.get('466815252131086342').send(`${msg.author.username} tried to DM me! Message: ${msg.content} \`[${moment().format("LT")}]\``)
       return;
       }
     
