@@ -18,6 +18,14 @@ client.channels.get('466746073822527488').send(`Welcome ${member} to Guill's Sup
 }
 })
 const prefix = '/'
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
 client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
@@ -215,7 +223,8 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
       console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'char')) {
-  if (msg.content.toLowerCase().startsWith(prefix + 'chars')) return;
+  
+  if (msg.content.toLowerCase().startsWith(prefix + 'characters')) return;
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   
   var charname = args[1]
@@ -333,6 +342,8 @@ test['charcheck'] = 'found'
   
   
   })
+  
+  sleep(2000)
   if (test['charcheck'] == 'notfound') msg.channel.send({
         embed: {
           color: 0xFF0000,
@@ -346,7 +357,7 @@ test['charcheck'] = 'found'
       })
   
   }
-if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
+if (msg.content.toLowerCase().startsWith(prefix + 'characters')) {
 
 var charuser = args[1]
 
