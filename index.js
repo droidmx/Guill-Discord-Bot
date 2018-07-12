@@ -248,7 +248,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
       test['charcheck'] = 'notfound'
   snekfetch.get(charsearchapi).then(c=>{
   if (!c.body.error) {
-  if (!c.body.chars[0]) {
+  if (!c.body.characters[0]) {
   msg.channel.send({
         embed: {
           color: 0xFF0000,
