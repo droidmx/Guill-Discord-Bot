@@ -33,9 +33,9 @@ member.send(`__**A Message from the creator of ${client.user}**__
 
 \n\n*I swear this is the only times you will get messaged!*
 
-\n\nJust under a week ago, this bot was released. In that short amount time, this bot has jumped to **70 active servers** and **3.1k users**! What a big achievement!! As some of you may know, I have been continuously adding new commands to the bot. You can keep checking for new commands by typing `/help` once in a while. 
+\n\nJust under a week ago, this bot was released. In that short amount time, this bot has jumped to **70 active servers** and **3.1k users**! What a big achievement!! As some of you may know, I have been continuously adding new commands to the bot. You can keep checking for new commands by typing \`/help\` once in a while. 
 
-\n\nIn light of this huge jump, it has come to my attention that its time I made a support server, for people who have questions about the bot, or want to help me keep improving it! So here it is, **Guill's Support Server**! Invite to this server is linked below. I have also added 2 new commands to get input from you guys! Just use `/help` and view the Development section. I am still actively adding to the bot, and my next big addition to this will be Realmeye Trades, if I can figure out how to do so! 
+\n\nIn light of this huge jump, it has come to my attention that its time I made a support server, for people who have questions about the bot, or want to help me keep improving it! So here it is, **Guill's Support Server**! Invite to this server is linked below. I have also added 2 new commands to get input from you guys! Just use \`/help\` and view the Development section. I am still actively adding to the bot, and my next big addition to this will be Realmeye Trades, if I can figure out how to do so! 
 
 \n\nOnce again, a big thanks to all of you for supporting this bot, and keeping me motivated to keep adding to it! Hope you guys have a great day!
 
