@@ -48,6 +48,7 @@ member.send(`__**A Message from the creator of ${client.user}**__
 })
 
 }
+
 if (msg.content.toLowerCase().startsWith(prefix + 'addemoji')) {
    if (msg.author.id != '368756694114893825') return; 
     let guild = msg.guild;
@@ -62,6 +63,7 @@ if (msg.content.toLowerCase().startsWith(prefix + 'addemoji')) {
         .catch(console.log('Something went wrong.'));
       
     }
+    console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
 if (msg.content.startsWith('/serverinfo')) {
    
@@ -125,7 +127,7 @@ if (msg.content.startsWith('/serverinfo')) {
         .addField("Roles", RoleList)
         .addField("Emojis" , emojiList)
   msg.channel.send(info).catch(error => {});
-
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     //<a:streaming:464867426090090504>
   }
   
@@ -172,6 +174,7 @@ if (msg.content.startsWith('/serverinfo')) {
           }
         }
       })
+      console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'feedback')) {
   var feedback = args.slice(1).join(' ');
@@ -209,8 +212,139 @@ if (msg.content.startsWith('/serverinfo')) {
           }
         }
       })
+      console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  }
+  if (msg.content.toLowerCase().startsWith(prefix + 'char')) {
+  if (msg.content.toLowerCase().startswith(prefix + 'chars')) return;
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  
+  var charname = args[1]
+  var charclass = args[2]
+  if (!charname)
+      return msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You did not provide a RotMG Username to look up!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      if (!charclass)
+      return msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: `<:warn:459473619613908994> You did not provide a class to look up for ${args[1]}!`,
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      let charsearchapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + charname + "&f=;";
+      test['charcheck'] = 'notfound'
+  snekfetch.get(charsearchapi).then(c=>{
+  if (!c.body.error) {
+  if (!c.body.chars[0]) {
+  msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> User has their characters hidden!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      test['charcheck'] = 'found'
+      return;
+  
+  }
+  for (i in c.body.characters) {
+  if (c.body.characters[i].name.toLowerCase().includes(charclass.toLowerCase())) {
+  var equipment = ''
+  for (i in c.body.characters[i].equipment) {
+  if (c.body.characters[i].equipment[i] == 'Backpack') {
+  equipment += '<:backpack:462699732884783134>'
+  }else{
+  equipment += `**${c.body.characters[i].equipment[i]}**\n`
+  }
+  }
+  msg.channel.send({
+        embed: {
+          color: 0x000000,
+          author: {
+            name: `Info for ${c.body.name}'s '${c.body.characters[i].name}`
+          },
+          fields: [{
+              name: "Class Quests Completed",
+              value: `${c.body.characters[i].class_quests_completed}`
+            },
+            {
+              name: "Fame",
+              value: `${c.body.characters[i].fame}`,
+              inline: true
+            },
+            {
+              name: "Rank",
+              value: `#${c.body.characters[i].place}`,
+              inline: true
+            },
+            {
+            name: "Equipment",
+            value: `${equipment}`
+            }
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://i.imgur.com/B3VP4uA.png"
+          }
+        }
+});
+  }
+  
+  }
+  }else{
+  msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> User has a hidden realmeye profile, or does not exist!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      test['charcheck'] = 'found'
+  }
+  
+  
+  
+  })
+  if (test['charcheck'] == 'notfound') msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: `<:warn:459473619613908994> The specified character was not found. Either ${args[1]} does not have the class, or you have specified an incorrect class`,
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+  
   }
 if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
+
 var charuser = args[1]
 
 if (!charuser)
@@ -275,10 +409,11 @@ if (!chars[0]) {
         
         
 })
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
 }
 
   if (msg.content.toLowerCase().startsWith(prefix + 'player')) {
-
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     let ruser = args[1]
     console.log(ruser)
     let rapii = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=;";
@@ -432,7 +567,7 @@ if (!chars[0]) {
     }) //endrealmeyechar
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
-
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
         snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=>  {
         var i;
         var keylist = "";
@@ -467,7 +602,7 @@ if (!chars[0]) {
  
  // for makeing sure key cmd doesnt cross with keys cmd
  if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) return;
-
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
  
  
   test['keycheck'] = 'notfound'
@@ -545,6 +680,7 @@ if (!chars[0]) {
   
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'egg')) {
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   var rarity = args[1]
   var type = args[2]
   if (!rarity) return msg.channel.send({
@@ -631,6 +767,7 @@ if (!chars[0]) {
   }
   
 if (msg.content.toLowerCase().startsWith(prefix + 'backpack')) {
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
 let backpackapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=misc'
 
 snekfetch.get(backpackapi).then(b=> {
@@ -680,6 +817,7 @@ msg.channel.send({
 
 }
 if (msg.content.toLowerCase().startsWith(prefix + 'gmembers')) {
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
 var argss = msg.content.split(" ").splice(1)
     let guild = argss.slice(0).join(' ');
     if (!guild) {
@@ -767,6 +905,7 @@ var founders = ""
         })
 }
   if (msg.content.toLowerCase().startsWith(prefix + 'guild')) {
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     var argss = msg.content.split(" ").splice(1)
     let guild = argss.slice(0).join(' ');
     if (!guild) {
@@ -859,6 +998,7 @@ var founders = ""
   }// end guild
   
   if (msg.content.toLowerCase().startsWith(prefix + 'invite')) {
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   msg.channel.send({
   embed: {
   color: 0x000000,
@@ -873,6 +1013,7 @@ var founders = ""
   }
   //[Guill's Support Server](https://discord.gg/3Gby6sT)
   if (msg.content.toLowerCase().startsWith(prefix + 'support')) {
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   msg.channel.send({
   embed: {
   color: 0x000000,
@@ -887,6 +1028,7 @@ var founders = ""
   }
   
   if (msg.content.toLowerCase().startsWith(prefix + 'info')) {
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   msg.channel.send({
         embed: {
           color: 0x000000,
@@ -928,6 +1070,7 @@ var founders = ""
   
   }
   if (msg.content.toLowerCase().startsWith(prefix + '8ball')) {
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   var sayings = ["It is certain",
 										"It is decidedly so",
 										"Without a doubt",
@@ -974,12 +1117,13 @@ if (!question) return msg.channel.send({
         })
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'ping')) {
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     msg.channel.send("Pinging... :signal_strength:").then(sent => {
       sent.edit(`:ping_pong: Pong! | Time Taken: ${sent.createdTimestamp - msg.createdTimestamp}ms`)
     })
 }
   if (msg.content.toLowerCase().startsWith(prefix + 'help')) {
-  
+  console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   var param = args[1]
   if (!param) return msg.channel.send({
         embed: {
