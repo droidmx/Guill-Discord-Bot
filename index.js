@@ -267,11 +267,13 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   for (i in c.body.characters) {
   if (c.body.characters[i].class.toLowerCase().includes(charclass.toLowerCase())) {
   var equipment = ''
-  for (i in c.body.characters[i].equipment) {
-  if (c.body.characters[i].equipment[i] == 'Backpack') {
+  var j;
+  for (j in c.body.characters[i].equipment) {
+  var charitem = c.body.characters[i].equipment[j]
+  if (c.body.characters[i].equipment[j] == 'Backpack') {
   equipment += '<:backpack:462699732884783134>'
   }else{
-  equipment += `**${c.body.characters[i].equipment[i]}**\n`
+  equipment += `**${c.body.characters[i].equipment[j]}**\n`
   }
   }
   msg.channel.send({
