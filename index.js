@@ -45,6 +45,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         }
       })
       console.log(`${msg.author.username} tried to DM me!`)
+      client.channels.get('466815252131086342').send(`${msg.author.username} tried to DM me!`)
       return;
       }
 if (talkedRecently.has(msg.author.id)) {
@@ -59,6 +60,8 @@ if (talkedRecently.has(msg.author.id)) {
           }
         }
       })
+      console.log(`${msg.author.username} was put on cooldown!`)
+      client.channels.get('466815252131086342').send(`${msg.author.username} was put on cooldown!`)
     } else {
 
 if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
@@ -102,6 +105,7 @@ if (msg.content.toLowerCase().startsWith(prefix + 'addemoji')) {
       
     }
     console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+    client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
 if (msg.content.startsWith('/serverinfo')) {
    
@@ -170,6 +174,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   
   if (msg.content.startsWith(prefix + 'stats')) {
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     msg.channel.send(`\`\`\`asciidoc\n= STATISTICS =
 • Users      :: ${client.users.size.toLocaleString()}
 • Servers    :: ${client.guilds.size.toLocaleString()}
@@ -213,6 +218,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
         }
       })
       console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+      client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'feedback')) {
   var feedback = args.slice(1).join(' ');
@@ -251,6 +257,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
         }
       })
       console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+      client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
 
@@ -319,11 +326,13 @@ if (!chars[0]) {
         
 })
 console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
 }
   if (msg.content.toLowerCase().startsWith(prefix + 'char')) {
   
   if (args[0] != '/char') return;
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   
   var charname = args[1]
   var charclass = args[2]
@@ -387,7 +396,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
         embed: {
           color: 0x000000,
           author: {
-            name: `Info for ${c.body.name}'s '${c.body.characters[i].class}`
+            name: `Info for ${c.body.name}'s ${c.body.characters[i].class}`
           },
           fields: [{
               name: "Class Quests Completed",
@@ -460,6 +469,7 @@ test['charcheck'] = 'found'
 
   if (msg.content.toLowerCase().startsWith(prefix + 'player')) {
 console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     let ruser = args[1]
     console.log(ruser)
     let rapii = "http://www.tiffit.net/RealmInfo/api/user?u=" + ruser + "&f=;";
@@ -614,6 +624,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   } //end player
   if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
 console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
         snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=keys').then(s=>  {
         var i;
         var keylist = "";
@@ -649,6 +660,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
  // for makeing sure key cmd doesnt cross with keys cmd
  if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) return;
 console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
  
  
   test['keycheck'] = 'notfound'
@@ -727,6 +739,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'egg')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   var rarity = args[1]
   var type = args[2]
   if (!rarity) return msg.channel.send({
@@ -814,6 +827,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   
 if (msg.content.toLowerCase().startsWith(prefix + 'backpack')) {
 console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
 let backpackapi = 'http://www.tiffit.net/RealmInfo/api/nexusitems?c=misc'
 
 snekfetch.get(backpackapi).then(b=> {
@@ -864,6 +878,7 @@ msg.channel.send({
 }
 if (msg.content.toLowerCase().startsWith(prefix + 'gmembers')) {
 console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
 var argss = msg.content.split(" ").splice(1)
     let guild = argss.slice(0).join(' ');
     if (!guild) {
@@ -952,6 +967,7 @@ var founders = ""
 }
   if (msg.content.toLowerCase().startsWith(prefix + 'guild')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     var argss = msg.content.split(" ").splice(1)
     let guild = argss.slice(0).join(' ');
     if (!guild) {
@@ -1045,6 +1061,7 @@ var founders = ""
   
   if (msg.content.toLowerCase().startsWith(prefix + 'invite')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   msg.channel.send({
   embed: {
   color: 0x000000,
@@ -1060,6 +1077,7 @@ var founders = ""
   //[Guill's Support Server](https://discord.gg/3Gby6sT)
   if (msg.content.toLowerCase().startsWith(prefix + 'support')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   msg.channel.send({
   embed: {
   color: 0x000000,
@@ -1075,6 +1093,7 @@ var founders = ""
   
   if (msg.content.toLowerCase().startsWith(prefix + 'info')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   msg.channel.send({
         embed: {
           color: 0x000000,
@@ -1117,6 +1136,7 @@ var founders = ""
   }
   if (msg.content.toLowerCase().startsWith(prefix + '8ball')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   var sayings = ["It is certain",
 										"It is decidedly so",
 										"Without a doubt",
@@ -1164,12 +1184,14 @@ if (!question) return msg.channel.send({
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'ping')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
     msg.channel.send("Pinging... :signal_strength:").then(sent => {
       sent.edit(`:ping_pong: Pong! | Time Taken: ${sent.createdTimestamp - msg.createdTimestamp}ms`)
     })
 }
   if (msg.content.toLowerCase().startsWith(prefix + 'help')) {
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+  client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   var param = args[1]
   if (!param) return msg.channel.send({
         embed: {
@@ -1407,6 +1429,7 @@ msg.channel.send({
         setTimeout(() => {
           // Removes the user from the set after a minute
           talkedRecently.delete(msg.author.id);
+          client.channels.get('466815252131086342').send(`${msg.author.username} removed from cooldown`)
         }, 2000);
     }
 }) // end message handler
