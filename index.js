@@ -30,7 +30,7 @@ function sleep(milliseconds) {
 }
 client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
-  if (!msg.content.startsWith(prefix)) return;
+  if (!msg.content.startsWith(prefix)) return client.channels.get('467070359435477038').send(`**${msg.author.username}** said "\`${msg.content}\`" in **${msg.guild.name}** at \`[${moment().format("LT")}]\``)
   let args = msg.content.split(" ");
   
   if (msg.channel.type == 'dm') {
