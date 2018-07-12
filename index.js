@@ -222,9 +222,77 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
       })
       console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
+  if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
+
+var charuser = args[1]
+
+if (!charuser)
+      return msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You did not provide a RotMG Username to look up!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      let charapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + charuser + "&f=;";
+      
+      snekfetch.get(charapi).then(r => {
+      
+      var chars = r.body.characters
+if (!chars[0]) {
+          var finalchars = 'hidden'
+        } else {
+          var finalchars = ""
+     
+          for (i in chars) {
+            finalchars += `**${chars[i].stats_maxed}**`
+            finalchars += " "
+            finalchars += chars[i].class
+            if (chars[i].equipment[4]) {
+              finalchars += " <:backpack:462699732884783134>"
+            }
+            finalchars += `\nBase <:fame:456347834908672030>: **${chars[i].fame}**`
+            finalchars += "\n"
+            /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
+            \n`*/
+          }
+          
+        }
+        msg.channel.send({
+        embed: {
+          color: 0xFFFFFF,
+          author: {
+            name: "RotMG Characters for",
+            icon_url: client.user.avatarURL
+          },
+          title: `**${r.body.name}**`,
+          url: `http://www.realmeye.com/player/${r.body.name}`,
+          description: `${finalchars}`,
+          
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid"
+          },
+          thumbnail: {
+            "url": "https://static.drips.pw/rotmg/wiki/Consumable/Other/Char%20Slot%20Unlocker.png"
+          }
+        }
+      });
+
+        
+        
+        
+})
+console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+}
   if (msg.content.toLowerCase().startsWith(prefix + 'char')) {
   
-  if (msg.content.toLowerCase().startsWith(prefix + 'charlist')) return;
+  if (msg.content.toLowerCase().startsWith(prefix + 'chars')) return;
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   
   var charname = args[1]
@@ -358,74 +426,7 @@ test['charcheck'] = 'found'
   
 
   
-if (msg.content.toLowerCase().startsWith(prefix + 'charlist')) {
 
-var charuser = args[1]
-
-if (!charuser)
-      return msg.channel.send({
-        embed: {
-          color: 0xFF0000,
-          description: "<:warn:459473619613908994> You did not provide a RotMG Username to look up!",
-          timestamp: new Date(),
-          footer: {
-            icon_url: client.user.avatarURL,
-            text: "© Droid & Co."
-          }
-        }
-      })
-      let charapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + charuser + "&f=;";
-      
-      snekfetch.get(charapi).then(r => {
-      
-      var chars = r.body.characters
-if (!chars[0]) {
-          var finalchars = 'hidden'
-        } else {
-          var finalchars = ""
-     
-          for (i in chars) {
-            finalchars += `**${chars[i].stats_maxed}**`
-            finalchars += " "
-            finalchars += chars[i].class
-            if (chars[i].equipment[4]) {
-              finalchars += " <:backpack:462699732884783134>"
-            }
-            finalchars += `\nBase <:fame:456347834908672030>: **${chars[i].fame}**`
-            finalchars += "\n"
-            /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
-            \n`*/
-          }
-          
-        }
-        msg.channel.send({
-        embed: {
-          color: 0xFFFFFF,
-          author: {
-            name: "RotMG Characters for",
-            icon_url: client.user.avatarURL
-          },
-          title: `**${r.body.name}**`,
-          url: `http://www.realmeye.com/player/${r.body.name}`,
-          description: `${finalchars}`,
-          
-          timestamp: new Date(),
-          footer: {
-            icon_url: client.user.avatarURL,
-            text: "© Droid"
-          },
-          thumbnail: {
-            "url": "https://static.drips.pw/rotmg/wiki/Consumable/Other/Char%20Slot%20Unlocker.png"
-          }
-        }
-      });
-
-        
-        
-        
-})
-console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
-}
 
   if (msg.content.toLowerCase().startsWith(prefix + 'player')) {
 console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
@@ -1149,7 +1150,7 @@ if (!question) return msg.channel.send({
           },
           {
           name: "<a:oryx:466283523691642890> RotMG",
-          value: "```css\n(player) (charlist) (guild) (gmembers) (backpack) (egg) (key) (keylist)```"
+          value: "```css\n(player) (chars) (char) (guild) (gmembers) (backpack) (egg) (key) (keylist)```"
           },
           {
           name: "<a:finaldundie:466655044956061706> Fun",
@@ -1294,10 +1295,10 @@ if (param == 'char') return msg.channel.send({
           }
         }
 })
-if (param == 'charlist') return msg.channel.send({
+if (param == 'chars') return msg.channel.send({
   embed: {
   color: 0x000000,
-  description: "**Character Command**\nFunction: Shows a player's characters\nUsage: `/charlist <Rotmg Username>`",
+  description: "**Character List**\nFunction: Shows a player's characters\nUsage: `/charlist <Rotmg Username>`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
