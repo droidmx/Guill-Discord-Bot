@@ -22,6 +22,32 @@ client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
 
+
+if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
+if (msg.author.id != '368756694114893825') return; 
+var allusers = client.users.array();
+allusers.forEach((member) => {
+console.log(member.id)
+
+member.send(`__**A Message from the creator of ${client.user}**__
+
+\n\n*I swear this is the only times you will get messaged!*
+
+\n\nJust under a week ago, this bot was released. In that short amount time, this bot has jumped to **70 active servers** and **3.1k users**! What a big achievement!! As some of you may know, I have been continuously adding new commands to the bot. You can keep checking for new commands by typing `/help` once in a while. 
+
+\n\nIn light of this huge jump, it has come to my attention that its time I made a support server, for people who have questions about the bot, or want to help me keep improving it! So here it is, **Guill's Support Server**! Invite to this server is linked below. I have also added 2 new commands to get input from you guys! Just use `/help` and view the Development section. I am still actively adding to the bot, and my next big addition to this will be Realmeye Trades, if I can figure out how to do so! 
+
+\n\nOnce again, a big thanks to all of you for supporting this bot, and keeping me motivated to keep adding to it! Hope you guys have a great day!
+
+\n\n**Links:**
+\nReddit Post: https://www.reddit.com/r/RotMG/comments/8vygzj/guill_new_rotmg_discord_bot/?st=jjhmkegy&sh=6b6d76ad
+\nSupport Server Invite: https://discord.gg/3Gby6sT
+
+
+`)
+})
+
+}
 if (msg.content.toLowerCase().startsWith(prefix + 'addemoji')) {
    if (msg.author.id != '368756694114893825') return; 
     let guild = msg.guild;
