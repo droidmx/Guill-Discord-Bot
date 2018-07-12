@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 const fs = require('fs');
 let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
+const talkedRecently = new Set();
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
@@ -45,7 +46,19 @@ client.on('message', async msg => { // START MESSAGE HANDLER
       console.log(`${msg.author.username} tried to DM me!`)
       return;
       }
-
+if (talkedRecently.has(msg.author.id)) {
+            msg.channel.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> You're on cooldown! Wait 2 seconds before using another command!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+    } else {
 
 if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
 if (msg.author.id != '368756694114893825') return; 
@@ -1389,7 +1402,12 @@ msg.channel.send({
         })
   
   }
-  
+  talkedRecently.add(msg.author.id);
+        setTimeout(() => {
+          // Removes the user from the set after a minute
+          talkedRecently.delete(msg.author.id);
+        }, 60000);
+    }
 }) // end message handler
 fs.writeFile('./test.json', JSON.stringify(test), console.error);
 client.login(process.env.BOT_TOKEN)
