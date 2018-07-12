@@ -224,7 +224,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'char')) {
   
-  if (msg.content.toLowerCase().startsWith(prefix + 'characters')) return;
+  if (msg.content.toLowerCase().startsWith(prefix + 'charlist')) return;
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   
   var charname = args[1]
@@ -339,11 +339,6 @@ test['charcheck'] = 'found'
       test['charcheck'] = 'found'
   }
   
-  
-  
-  })
-  
-  sleep(2000)
   if (test['charcheck'] == 'notfound') msg.channel.send({
         embed: {
           color: 0xFF0000,
@@ -357,7 +352,12 @@ test['charcheck'] = 'found'
       })
   
   }
-if (msg.content.toLowerCase().startsWith(prefix + 'characters')) {
+  
+  })
+  
+
+  
+if (msg.content.toLowerCase().startsWith(prefix + 'charlist')) {
 
 var charuser = args[1]
 
@@ -1148,7 +1148,7 @@ if (!question) return msg.channel.send({
           },
           {
           name: "<a:oryx:466283523691642890> RotMG",
-          value: "```css\n(player) (chars) (guild) (gmembers) (backpack) (egg) (key) (keylist)```"
+          value: "```css\n(player) (charlist) (guild) (gmembers) (backpack) (egg) (key) (keylist)```"
           },
           {
           name: "<a:finaldundie:466655044956061706> Fun",
@@ -1282,10 +1282,21 @@ if (param == 'backpack') return msg.channel.send({
           }
         }
 })
-if (param == 'chars') return msg.channel.send({
+if (param == 'char') return msg.channel.send({
   embed: {
   color: 0x000000,
-  description: "**Character Command**\nFunction: Shows a player's characters\nUsage: `/chars <Rotmg Username>`",
+  description: "**Character Search**\nFunction: Searches for the specified user's specified character and provides information\nUsage: `/char <RotMG Username> <Class Name>`",
+  timestamp: new Date(),
+  footer: {
+  icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+})
+if (param == 'charlist') return msg.channel.send({
+  embed: {
+  color: 0x000000,
+  description: "**Character Command**\nFunction: Shows a player's characters\nUsage: `/charlist <Rotmg Username>`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
