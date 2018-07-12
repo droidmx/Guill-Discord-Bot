@@ -215,7 +215,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
       console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   }
   if (msg.content.toLowerCase().startsWith(prefix + 'char')) {
-  if (msg.content.toLowerCase().startswith(prefix + 'chars')) return;
+  if (msg.content.toLowerCase().startsWith(prefix + 'chars')) return;
   console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   
   var charname = args[1]
