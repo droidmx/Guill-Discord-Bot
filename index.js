@@ -29,6 +29,22 @@ function sleep(milliseconds) {
 client.on('message', async msg => { // START MESSAGE HANDLER
   if (msg.author.bot) return;
   let args = msg.content.split(" ");
+  
+  if (msg.channel.type == 'dm') {
+   msg.author.send({
+        embed: {
+          color: 0xFF0000,
+          description: "<:warn:459473619613908994> Sorry, I don't respond to DMs!",
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "© Droid & Co."
+          }
+        }
+      })
+      console.log(`${msg.author.username} tried to DM me!`)
+      return;
+      }
 
 
 if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
