@@ -265,7 +265,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
   
   }
   for (i in c.body.characters) {
-  if (c.body.characters[i].name.toLowerCase().includes(charclass.toLowerCase())) {
+  if (c.body.characters[i].class.toLowerCase().includes(charclass.toLowerCase())) {
   var equipment = ''
   for (i in c.body.characters[i].equipment) {
   if (c.body.characters[i].equipment[i] == 'Backpack') {
@@ -278,7 +278,7 @@ console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
         embed: {
           color: 0x000000,
           author: {
-            name: `Info for ${c.body.name}'s '${c.body.characters[i].name}`
+            name: `Info for ${c.body.name}'s '${c.body.characters[i].class}`
           },
           fields: [{
               name: "Class Quests Completed",
