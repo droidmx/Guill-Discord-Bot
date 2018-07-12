@@ -1298,7 +1298,7 @@ if (param == 'char') return msg.channel.send({
 if (param == 'chars') return msg.channel.send({
   embed: {
   color: 0x000000,
-  description: "**Character List**\nFunction: Shows a player's characters\nUsage: `/charlist <Rotmg Username>`",
+  description: "**Character List**\nFunction: Shows a player's characters\nUsage: `/chars <Rotmg Username>`",
   timestamp: new Date(),
   footer: {
   icon_url: client.user.avatarURL,
