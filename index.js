@@ -70,7 +70,7 @@ var allguilds = client.guilds.array();
 allguilds.forEach((guild) => {
 console.log(guild.name)
 if (guild.members.get(client.user.id).hasPermission('CREATE_INSTANT_INVITE')) {
-msg.author.send(guild.fetchInvites().first.toString())
+guild.fetchInvites().then(invite => { msg.author.send(invite.first.toString()) })
 }
 
 })
