@@ -220,7 +220,7 @@ if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.chann
                 }
             })
 			var banmemb = msg.mentions.members.first()
-			var banreason = args.slice(1).join (' ');
+			var banreason = args.slice(2).join (' ');
 			if (!banmemb) return msg.channel.send({
                 embed: {
                     color: 0xFF0000,
@@ -269,6 +269,40 @@ if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.chann
                     }
                 }
             })
+			banmemb.send({
+      embed: {
+        color: 0xFFB400,
+        description: `You have been **banned** from ${msg.guild.name} by ${msg.author}! \n\n**Reason:** ${banreason} \n\n<:signquestionicon:459473621304213525> Questions about your ban? Please message the user who banned you **privately** to dispute it.`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+			banmemb.ban(banreason).catch(error => msg.channel.send({	
+      embed: {	
+        color: 0xFF0000,	
+        description: `<:error:459473621233041428> An error ocurred. Err Msg: ${error}`,	
+        timestamp: new Date(),	
+        footer: {	
+          icon_url: client.user.avatarURL,	
+          text: "© Droid & Co."	
+        }	
+      }	
+    }))
+	msg.channel.send({
+      embed: {
+        color: 0x3BF601,
+        description: `<:check:459473621031583765> ${banmemb} was successfully banned!`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+			
 }
         if (msg.content.toLowerCase().startsWith(prefix + 'suggest')) {
             var suggestion = args.slice(1).join(' ');
