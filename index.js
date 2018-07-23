@@ -1491,7 +1491,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         },
 						{
 						name: "<:banhammer:471005730170863637> Moderation",
-						value: '```css\n(ban) (kick) (warn)'
+						value: '```css\n(ban) (kick) (warn)```'
 						},
                         {
                             name: "<:terminalicon:459473619735674890> Development",
