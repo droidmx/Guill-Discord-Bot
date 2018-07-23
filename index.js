@@ -256,8 +256,7 @@ if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.chann
             })
 			var bannerpos = msg.guild.member(msg.author).highestRole.calculatedPosition
 			var bannedmemb = banmemb.highestRole.calculatedPosition
-			console.log(bannerpos)
-			console.log(bannedmemb)
+			
 			if (!bannerpos > bannedmemb) return msg.channel.send({
                 embed: {
                     color: 0xFF0000,
@@ -303,6 +302,164 @@ if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.chann
       }
     })
 			
+}
+if (msg.content.toLowerCase().startsWith(prefix + 'kick')) {
+if (!msg.guild.member(msg.author).hasPermission('KICK_MEMBERS')) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> You do not have permission to kick!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			var kickmemb = msg.mentions.members.first();
+			var kickreason = args.slice(2).join(' ');
+			if (!kickmemb) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> Please provide a user to kick!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			if (!kickmemb.kickable) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> I do not have permission to kick this member!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			if (!kickreason) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> Please provide a reason for the kick!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			var kickerpos = msg.guild.member(msg.author).highestRole.calculatedPosition
+			var kickedmemb = kickmemb.highestRole.calculatedPosition
+			
+			if (!kickerpos > kickedmemb) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> You cannot kick this user, he/she has a higher role than you!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			kickmemb.send({
+      embed: {
+        color: 0xFFB400,
+        description: `You have been **kicked** from ${msg.guild.name} by ${msg.author}! \n\n**Reason:** ${kickreason} \n\n<:signquestionicon:459473621304213525> Questions about your kick? Please message the user who banned you **privately** to dispute it.`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+			kickmemb.kick(kickreason).catch(error => msg.channel.send({	
+      embed: {	
+        color: 0xFF0000,	
+        description: `<:error:459473621233041428> An error ocurred. Err Msg: ${error}`,	
+        timestamp: new Date(),	
+        footer: {	
+          icon_url: client.user.avatarURL,	
+          text: "© Droid & Co."	
+        }	
+      }	
+    }))
+	msg.channel.send({
+      embed: {
+        color: 0x3BF601,
+        description: `<:check:459473621031583765> ${kickmemb} was successfully kicked!`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+			
+
+}
+if (msg.content.toLowerCase().startsWith(prefix + 'warn')) {
+var warnmemb = msg.mentions.members.first();
+var warnreason = args.slice(2).join(' ');
+if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> You do not have permission to warn users, only Admins do!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			if (!warnmemb) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> Please provide a user to warn!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			if (!warnreason) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> Please provide a reason for the warn",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			warnmemb.send({
+      embed: {
+        color: 0xFFB400,
+        description: `You have been **warned** from ${msg.guild.name} by ${msg.author}! \n\n**Reason:** ${warnreason} \n\n<:signquestionicon:459473621304213525> Questions about your warn? Please message the user who banned you **privately** to dispute it.`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+	msg.channel.send({
+      embed: {
+        color: 0x3BF601,
+        description: `<:check:459473621031583765> ${warnmemb} was successfully warned!`,
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.user.avatarURL,
+          text: "© Droid & Co."
+        }
+      }
+    })
+
+
 }
         if (msg.content.toLowerCase().startsWith(prefix + 'suggest')) {
             var suggestion = args.slice(1).join(' ');
@@ -1332,6 +1489,10 @@ if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.chann
                             name: "<a:finaldundie:466655044956061706> Fun",
                             value: "```css\n(8ball) (ping)```"
                         },
+						{
+						name: "<:banhammer:471005730170863637> Moderation",
+						value: '```css\n(ban) (kick) (warn)'
+						},
                         {
                             name: "<:terminalicon:459473619735674890> Development",
                             value: "```css\n(suggest) (feedback) (support)```"
@@ -1365,6 +1526,39 @@ if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.chann
                 embed: {
                     color: 0x000000,
                     description: "**Support Command**\nFunction: Provides an invite link for the support server!\nUsage: `/support`",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			if (param == 'ban') return msg.channel.send({
+                embed: {
+                    color: 0x000000,
+                    description: "**Ban Command**\nFunction: Bans a user with a specified reason, and notifies the user of their ban with the provided reason!\nUsage: `/ban @user <reason>`",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			if (param == 'warn') return msg.channel.send({
+                embed: {
+                    color: 0x000000,
+                    description: "**Warn Command**\nFunction: Warns a user with a specified reason!\nUsage: `/warn @user <reason>`",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+			if (param == 'kick') return msg.channel.send({
+                embed: {
+                    color: 0x000000,
+                    description: "**Kick Command**\nFunction: Kicks a user with a specified reason, and notifies the user of their kick with the provided reason!\nUsage: `/kick @user <reason>`",
                     timestamp: new Date(),
                     footer: {
                         icon_url: client.user.avatarURL,
