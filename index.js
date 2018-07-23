@@ -258,6 +258,17 @@ if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.chann
 			var bannedmemb = banmemb.highestRole.calculatedPosition
 			console.log(bannerpos)
 			console.log(bannedmemb)
+			if (bannerpos >= bannedmemb) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> You cannot ban this user, he/she has a higher role than you!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
 }
         if (msg.content.toLowerCase().startsWith(prefix + 'suggest')) {
             var suggestion = args.slice(1).join(' ');
