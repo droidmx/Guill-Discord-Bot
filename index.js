@@ -206,7 +206,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 • Servers    :: ${client.guilds.size.toLocaleString()}
 • Channels   :: ${client.channels.size.toLocaleString()}\`\`\``);
         }
-if (msg.content.toLowercase().startsWith(prefix + 'ban')) {
+if (msg.content.toLowerCase().startsWith(prefix + 'ban')) {
 
 if (!msg.guild.member(msg.author).hasPermission('BAN_MEMBERS')) return msg.channel.send({
                 embed: {
