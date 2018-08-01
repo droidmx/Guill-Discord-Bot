@@ -798,16 +798,19 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         var levc = levc.toString();
                     }
 
-                    if (!test['h']) {
+                    
                         test['h'] = `${leva} ${abia} • ${levb} ${abib} • ${levc} ${abic}`
-                    } else {
-                        test['h'] = `${leva} ${abia} • ${levb} ${abib} • ${levc} ${abic}`
-                    }
-                    console.log(test['h'])
+                   
+                    
+                    
+               
 
                 } else {
-                    test['h'] = `hidden`
-                    console.log(test['h'])
+			if (p.body.error.includes('private')) {
+				test['h'] = p.body.error
+			}else{
+                    test['h'] = 'n/a'
+			}
                 }
             }) // end petinfo
             snekfetch.get(rapii).then(r => {
