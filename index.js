@@ -2,6 +2,11 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const snekfetch = require("snekfetch");
 const fs = require('fs');
+const Nightmare = require('nightmare');
+const nightmare = Nightmare();
+const itemID = require('./idtoname.json');
+const itemName = require('./nametoid.json');
+const HTMLParser = require('fast-html-parser');
 const moment = require('moment');
 let test = JSON.parse(fs.readFileSync('./test.json', 'utf8'));
 const talkedRecently = new Set();
@@ -33,7 +38,7 @@ function sleep(milliseconds) {
 }
 client.on('message', async msg => { // START MESSAGE HANDLER
     if (msg.author.bot) return;
-    if (!msg.content.startsWith(prefix)) return client.channels.get('467070359435477038').send(`**${msg.author.username}** said "\`${msg.content}\`" in **${msg.guild.name}** at \`[${moment().format("LT")}]\``)
+    if (!msg.content.startsWith(prefix)) return;
     let args = msg.content.split(" ");
 
     if (msg.channel.type == 'dm') {
@@ -90,7 +95,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 
 
         }
-        if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
+     /*   if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
             if (msg.author.id != '368756694114893825') return;
             var allusers = client.users.array();
             allusers.forEach((member) => {
@@ -114,7 +119,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 `)
             })
 
-        }
+        }*/
 		
         if (msg.content.toLowerCase().startsWith(prefix + 'addemoji')) {
             if (msg.author.id != '368756694114893825') return;
@@ -132,6 +137,56 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             }
             console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
             client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
+        }
+        if (msg.content.toLowerCase().startsWith('/wiki')) {
+        
+        var name = "Chicken Leg of Doom";
+var urlName = name.split(" ").join("-");
+nightmare
+    .goto(`https://www.realmeye.com/wiki/${urlName}`)
+    .evaluate(function () {
+        var info = document.querySelectorAll('#d .table-responsive');
+        var rows = {};
+
+        var name = document.querySelector('h1');
+
+        rows.name = name.innerHTML;
+        rows.info = [];
+
+        info[0].querySelectorAll('tr').forEach((row) => {
+            rows.info.push(row.innerHTML);
+        })
+
+        info[1].querySelectorAll('tr').forEach((row) => {
+            rows.info.push(row.innerHTML);
+        })
+
+        info[2].querySelectorAll('tr').forEach((row) => {
+            rows.info.push(row.innerHTML);
+        })
+
+        return rows;
+    })
+    .end()
+    .then(function (result) {
+        var info = result.info;
+
+        var DescriptionInformation = HTMLParser.parse(result.info[0]);
+        var description = DescriptionInformation.childNodes[1].childNodes[0].rawText;
+        console.log(result.name);
+        console.log(description);
+
+        for (i = 1; i < info.length; i++) {
+            var rowInfo = HTMLParser.parse(info[i]);
+            var title = rowInfo.childNodes[0].childNodes[0].rawText;
+            console.log(title);
+            // const value = rowInfo.childNodes[1].childNodes[0].rawText; This does errors for some cases.
+            console.log(rowInfo.childNodes[1])
+        }
+    })
+    .catch(function (e) {
+        console.log(e);
+    });
         }
         if (msg.content.toLowerCase().startsWith('/serverinfo')) {
 
@@ -1376,7 +1431,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
             msg.channel.send({
                 embed: {
                     color: 0x000000,
-                    description: "Click [here](https://discordapp.com/api/oauth2/authorize?client_id=462681278639243274&permissions=346112&scope=bot) to join the support server!",
+                    description: "Click [here](https://discord.gg/3Gby6sT) to join the support server!",
                     timestamp: new Date(),
                     footer: {
                         icon_url: client.user.avatarURL,
