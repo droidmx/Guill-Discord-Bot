@@ -140,15 +140,15 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         }
         if (msg.content.toLowerCase().startsWith('/wiki')) {
         
-        var name = "Chicken Leg of Doom";
-var urlName = name.split(" ").join("-");
+        const name = "Chicken Leg of Doom";
+const urlName = name.split(" ").join("-");
 nightmare
     .goto(`https://www.realmeye.com/wiki/${urlName}`)
     .evaluate(function () {
-        var info = document.querySelectorAll('#d .table-responsive');
-        var rows = {};
+        const info = document.querySelectorAll('#d .table-responsive');
+        const rows = {};
 
-        var name = document.querySelector('h1');
+        const name = document.querySelector('h1');
 
         rows.name = name.innerHTML;
         rows.info = [];
@@ -169,16 +169,16 @@ nightmare
     })
     .end()
     .then(function (result) {
-        var info = result.info;
+        const info = result.info;
 
-        var DescriptionInformation = HTMLParser.parse(result.info[0]);
-        var description = DescriptionInformation.childNodes[1].childNodes[0].rawText;
+        const DescriptionInformation = HTMLParser.parse(result.info[0]);
+        const description = DescriptionInformation.childNodes[1].childNodes[0].rawText;
         console.log(result.name);
         console.log(description);
 
         for (i = 1; i < info.length; i++) {
-            var rowInfo = HTMLParser.parse(info[i]);
-            var title = rowInfo.childNodes[0].childNodes[0].rawText;
+            const rowInfo = HTMLParser.parse(info[i]);
+            const title = rowInfo.childNodes[0].childNodes[0].rawText;
             console.log(title);
             // const value = rowInfo.childNodes[1].childNodes[0].rawText; This does errors for some cases.
             console.log(rowInfo.childNodes[1])
