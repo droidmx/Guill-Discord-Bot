@@ -1328,10 +1328,22 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                     });
 
                 } else {
-                    msg.channel.send({
+                var guildsuggestions = '**Suggested Names:** '
+                if (g.body.suggestions >= 10) {
+                
+                for (i = 0; i <= 10; i++) {
+                guildsuggestions += `\n ${g.body.suggestions[i]}`
+                }  
+                    }else{
+                    for (i in g.body.suggestions) {
+                    guildsuggestions += `\n ${g.body.suggestions[i]}`
+                    }
+                    
+                    }
+                     msg.channel.send({
                         embed: {
                             color: 0xFF0000,
-                            description: "<:warn:459473619613908994> Guild not found!\nNote: *Guild Names are CASE-SENSITIVE*",
+                            description: `<:warn:459473619613908994> Guild not found!\nNote: *Guild Names are CASE-SENSITIVE* \n ${guildsuggestions}`,
                             timestamp: new Date(),
                             footer: {
                                 text: "© Droid & Co."
