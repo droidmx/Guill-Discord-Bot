@@ -1329,7 +1329,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
 
                 } else {
                 var guildsuggestions = '**Suggested Names:** '
-                if (g.body.suggestions >= 10) {
+                if (g.body.suggestions.length >= 10) {
                 
                 for (i = 0; i <= 10; i++) {
                 guildsuggestions += `\n ${g.body.suggestions[i]}`
