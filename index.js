@@ -683,7 +683,8 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                         },
                                         {
                                             name: "Equipment",
-                                            value: `${equipment}`
+                                            value: `${equipment}`,
+                                            inline: true
                                         },
                                         {
                                         name: 'Stats',
