@@ -121,74 +121,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 
         }*/
 		
-        if (msg.content.toLowerCase().startsWith(prefix + 'addemoji')) {
-            if (msg.author.id != '368756694114893825') return;
-            let guild = msg.guild;
-            let toAdd = args[2];
-            let title = args[1];
-
-            if (!title || !toAdd) {
-                return msg.channel.send('Please provide name and url for the emoji to add. Ex: >>addemoji <name> <url>');
-            } else {
-                guild.createEmoji(toAdd, title)
-                    .then(emoji => msg.react(emoji))
-                    .catch(console.log('Something went wrong.'));
-
-            }
-            console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
-            client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
-        }
-        if (msg.content.toLowerCase().startsWith(prefix + 'test')) {
-        
-        const name = "Chicken Leg of Doom";
-const urlName = name.split(" ").join("-");
-nightmare
-    .goto(`https://www.realmeye.com/wiki/${urlName}`)
-    .evaluate(function () {
-        const info = document.querySelectorAll('#d .table-responsive');
-        const rows = {};
-
-        const name = document.querySelector('h1');
-
-        rows.name = name.innerHTML;
-        rows.info = [];
-
-        info[0].querySelectorAll('tr').forEach((row) => {
-            rows.info.push(row.innerHTML);
-        })
-
-        info[1].querySelectorAll('tr').forEach((row) => {
-            rows.info.push(row.innerHTML);
-        })
-
-        info[2].querySelectorAll('tr').forEach((row) => {
-            rows.info.push(row.innerHTML);
-            console.log(rows.info)
-        })
-
-        return rows;
-    })
-    .end()
-    .then(function (result) {
-        const info = result.info;
-
-        const DescriptionInformation = HTMLParser.parse(result.info[0]);
-        const description = DescriptionInformation.childNodes[1].childNodes[0].rawText;
-        console.log(result.name);
-        console.log(description);
-
-        for (i = 1; i < info.length; i++) {
-            const rowInfo = HTMLParser.parse(info[i]);
-            const title = rowInfo.childNodes[0].childNodes[0].rawText;
-            console.log(title);
-            // const value = rowInfo.childNodes[1].childNodes[0].rawText; This does errors for some cases.
-            console.log(rowInfo.childNodes[1])
-        }
-    })
-    .catch(function (e) {
-        console.log(e);
-    });
-        }
+       
         if (msg.content.toLowerCase().startsWith('/serverinfo')) {
 
 
@@ -751,6 +684,11 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                         {
                                             name: "Equipment",
                                             value: `${equipment}`
+                                        },
+                                        {
+                                        name: 'Stats',
+                                        value: `<:lifepot:467005467265204234>: ${c.body.characters[i].stats.hp}\n<:manapot:467005513541091328>: ${c.body.characters[i].stats.mp}\n<:atkpot:467005187316252683>: ${c.body.characters[i].stats.attack}\n<:defpot:467005248641302539>: ${c.body.characters[i].stats.defense}\n<:spdpot:467005297051959296>: ${c.body.characters[i].stats.speed}\n<:dexpot:467005350680461322>: ${c.body.characters[i].stats.dexterity}\n<:vitpot:467005392397008911>: ${c.body.characters[i].stats.vitality}\n<:wispot:467005425439473665>: ${c.body.characters[i].stats.wisdom}`
+                                        
                                         }
                                     ],
                                     timestamp: new Date(),
