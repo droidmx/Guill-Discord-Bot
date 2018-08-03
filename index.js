@@ -138,7 +138,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
             client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
         }
-        if (msg.content.toLowerCase().startsWith('/wiki')) {
+        if (msg.content.toLowerCase().startsWith(prefix + 'test')) {
         
         const name = "Chicken Leg of Doom";
 const urlName = name.split(" ").join("-");
@@ -163,6 +163,7 @@ nightmare
 
         info[2].querySelectorAll('tr').forEach((row) => {
             rows.info.push(row.innerHTML);
+            console.log(rows.info)
         })
 
         return rows;
