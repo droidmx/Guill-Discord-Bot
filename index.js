@@ -900,6 +900,32 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
 
             }) //endrealmeyechar
         } //end player
+        if (msg.content.toLowerCase().startsWith(prefix + 'petfoodlist')) {
+            console.log(`${args[0]} used in ${msg.guild} by ${msg.author.username}`)
+            client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
+            snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=pet-food').then(f => {
+            var i;
+            var petfoodlist = "";
+            for (i in f.body.item) {
+                petfoodlist += `**${f.body.item[i].name}**, `
+            }
+            msg.channel.send({
+                embed: {
+                    color: 0xEAC70D,
+                    author: {
+                        name: "List of Available Pet Foods"
+                    },
+                    description: petfoodlist,
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+
+            })
+        }
         if (msg.content.toLowerCase().startsWith(prefix + 'keylist')) {
             console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
             client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
@@ -932,6 +958,81 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
 
 
 
+        }
+        if (msg.content.toLowerCase().startsWith(prefix + 'petfood')) {
+            if (msg.content.includes('petfoodlist')) return;
+            console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
+            client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
+            test['petfoodcheck'] = 'notfound'
+            var petfoodsearch = args.slice(1).join(' ');
+            if (!petfoodsearch) return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> Please provide a pet food name to search for!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+            snekfetch.get('http://www.tiffit.net/RealmInfo/api/nexusitems?c=pet-food').then(s => {
+            for (i in s.body.item) {
+                var currpfname = s.body.item[i].name
+                if (currpfname.toLowerCase().includes(petfoodsearch.toLowerCase())) {
+                    msg.channel.send({ 
+                        embed: {
+                            color: 0xEAC70D,
+                            author: {
+                                name: "Pet Food Searcher"
+                            },
+                            fields: [{
+                                    name: "Item Found! <a:petfood:476168086215458817>",
+                                    value: `${s.body.item[i].name}`
+                                },
+                                {
+                                    name: "Cheapest Location",
+                                    value: `${s.body.item[i].price} <:coin:463847187957415946> at ${s.body.item[i].cheapest_on}`,
+                                    inline: true
+                                },
+                                {
+                                    name: "Supply",
+                                    value: `${k.body.item[i].quantity} left`,
+                                    inline: true
+                                },
+                                {
+                                    name: "Time Left",
+                                    value: `${k.body.item[i]['Time Left']} Minutes`
+                                }
+                            ],
+                            timestamp: new Date(),
+                            footer: {
+                                icon_url: client.user.avatarURL,
+                                text: "© Droid"
+                            },
+                            thumbnail: {
+                                "url": "https://i.imgur.com/MG2ZIuQ.gif"
+                            }
+                        }
+                    }); 
+                    test['petfoodcheck'] = 'found'
+                    return
+                }
+            }
+            if (test['petfoodcheck'] == 'notfound') return msg.channel.send({
+                embed: {
+                    color: 0xFF0000,
+                    description: "<:warn:459473619613908994> The pet food with the specified name was **not found**. Either the item is not currently for sale, or you have provided incorrect details!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+            
+
+            })
         }
         if (msg.content.toLowerCase().startsWith(prefix + 'key')) {
 
