@@ -997,12 +997,12 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 },
                                 {
                                     name: "Supply",
-                                    value: `${k.body.item[i].quantity} left`,
+                                    value: `${s.body.item[i].quantity} left`,
                                     inline: true
                                 },
                                 {
                                     name: "Time Left",
-                                    value: `${k.body.item[i]['Time Left']} Minutes`
+                                    value: `${s.body.item[i]['Time Left']} Minutes`
                                 }
                             ],
                             timestamp: new Date(),
@@ -1594,7 +1594,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         },
                         {
                             name: "<a:oryx:466283523691642890> RotMG",
-                            value: "```css\n(player) (chars) (char) (guild) (gmembers) (backpack) (egg) (key) (keylist)```"
+                            value: "```css\n(player) (chars) (char) (guild) (gmembers) (backpack) (egg) (key) (keylist) (petfood) (petfoodlist)```"
                         },
                         {
                             name: "<a:finaldundie:466655044956061706> Fun",
@@ -1703,6 +1703,17 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                 embed: {
                     color: 0x000000,
                     description: "**Keys Command**\nFunction: Sends a list of keys available for purchase at the time.\nUsage: `/keylist`\n\nNote: Use `/key <name of key>` for more information on the particular key",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+            if (param == 'petfodlist') return msg.channel.send({
+                embed: {
+                    color: 0x000000,
+                    description: "**Pet Food List Command**\nFunction: Sends a list of pet foods available for purchase at the time.\nUsage: `/petfoodlist`\n\nNote: Use `/key <name of key>` for more information on the particular key",
                     timestamp: new Date(),
                     footer: {
                         icon_url: client.user.avatarURL,
@@ -1824,6 +1835,17 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                 embed: {
                     color: 0x000000,
                     description: "**Key Searcher**\nFunction: Searches for a key with the specified name and provides information on sale location\nUsage: `/key <key name>`",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "© Droid & Co."
+                    }
+                }
+            })
+            if (param == 'petfood') return msg.channel.send({
+                embed: {
+                    color: 0x000000,
+                    description: "**Pet Food Searcher**\nFunction: Searches for a pet food with the specified name and provides information on sale location\nUsage: `/petfood <pet food name>`",
                     timestamp: new Date(),
                     footer: {
                         icon_url: client.user.avatarURL,
