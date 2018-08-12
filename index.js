@@ -659,6 +659,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                     equipment += '<:backpack:462699732884783134>'
                                 } else {
                                     var itemname = charitem.split(' ').slice(0, -1).join('_')
+                                    var itemname = itemname.replace('-', '_')
                                     var itememoji = client.emojis.find('name', itemname)
                                     equipment += `${itememoji}`
                                 }
