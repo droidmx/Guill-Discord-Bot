@@ -658,7 +658,9 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 if (c.body.characters[i].equipment[j] == 'Backpack') {
                                     equipment += '<:backpack:462699732884783134>'
                                 } else {
-                                    equipment += `${c.body.characters[i].equipment[j]}\n`
+                                    var itemname = charitem.split(' ').slice(0, -1).join('_')
+                                    var itememoji = client.emojis.find('name', itemname)
+                                    equipment += `${itememoji}`
                                 }
                             }
                             msg.channel.send({
@@ -1710,7 +1712,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                     }
                 }
             })
-            if (param == 'petfodlist') return msg.channel.send({
+            if (param == 'petfoodlist') return msg.channel.send({
                 embed: {
                     color: 0x000000,
                     description: "**Pet Food List Command**\nFunction: Sends a list of pet foods available for purchase at the time.\nUsage: `/petfoodlist`\n\nNote: Use `/key <name of key>` for more information on the particular key",
