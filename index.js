@@ -660,6 +660,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 } else {
                                     var itemname = charitem.split(' ').slice(0, -1).join('_')
                                     var itemname = itemname.replace('-', '_')
+                                    var itemname = itemname.replace('\u0027', '\'')
                                     var itememoji = client.emojis.find('name', itemname)
                                     equipment += `${itememoji}`
                                 }
