@@ -528,6 +528,21 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
             console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
             client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
         }
+        if (msg.content.startsWith(prefix + 'addemoji')) {
+            if (msg.author.id != '465236540826583040') return; 
+             let guild = msg.guild;
+             let toAdd = args[2];
+             let title = args[1];
+         
+             if(!title || !toAdd) {
+                 return msg.channel.send('Please provide name and url for the emoji to add. Ex: >>addemoji <name> <url>');
+             } else {
+                 guild.createEmoji(toAdd, title)
+                 .then(emoji => msg.react(emoji))
+                 .catch(console.log('Something went wrong.'));
+               
+             }
+           }
         if (msg.content.toLowerCase().startsWith(prefix + 'chars')) {
 
             var charuser = args[1]
@@ -573,8 +588,8 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 var citememoji = client.emojis.find('name', citemname)
                                 finalchars += `${citememoji}`
                             }
-                        } //end testing
-                    }
+                        } 
+                    } //endtesting
                         finalchars += `\n**${chars[i].fame}** <:fame:456347834908672030>`
                         finalchars += "\n"
                         /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
