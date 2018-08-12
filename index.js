@@ -558,9 +558,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         finalchars += `**${chars[i].stats_maxed}**`
                         finalchars += " "
                         finalchars += chars[i].class
-                        if (chars[i].equipment[4]) {
-                            finalchars += " <:backpack:462699732884783134>"
-                        }
+                        
                         finalchars += `\nBase <:fame:456347834908672030>: **${chars[i].fame}**`
                         finalchars += "\n"
                         /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
@@ -577,7 +575,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         },
                         title: `**${r.body.name}**`,
                         url: `http://www.realmeye.com/player/${r.body.name}`,
-                        description: `${finalchars}`,
+                        description: `${finalchars}For more info about a specific class, type \`/char ${r.body.name} <class>\``,
 
                         timestamp: new Date(),
                         footer: {
