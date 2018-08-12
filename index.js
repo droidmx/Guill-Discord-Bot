@@ -693,7 +693,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                         },
                                         {
                                         name: 'Stats',
-                                        value: `<:lifepot:467005467265204234>: **${c.body.characters[i].stats.hp}** <:manapot:467005513541091328>: **${c.body.characters[i].stats.mp}**\n<:atkpot:467005187316252683>: **${c.body.characters[i].stats.attack} <:defpot:467005248641302539>: **${c.body.characters[i].stats.defense}**\n<:spdpot:467005297051959296>: **${c.body.characters[i].stats.speed}** <:dexpot:467005350680461322>: **${c.body.characters[i].stats.dexterity}**\n<:vitpot:467005392397008911>: **${c.body.characters[i].stats.vitality}** <:wispot:467005425439473665>: **${c.body.characters[i].stats.wisdom}**`,
+                                        value: `<:lifepot:467005467265204234>: **${c.body.characters[i].stats.hp}** <:manapot:467005513541091328>: **${c.body.characters[i].stats.mp}**\n<:atkpot:467005187316252683>: **${c.body.characters[i].stats.attack}** <:defpot:467005248641302539>: **${c.body.characters[i].stats.defense}**\n<:spdpot:467005297051959296>: **${c.body.characters[i].stats.speed}** <:dexpot:467005350680461322>: **${c.body.characters[i].stats.dexterity}**\n<:vitpot:467005392397008911>: **${c.body.characters[i].stats.vitality}** <:wispot:467005425439473665>: **${c.body.characters[i].stats.wisdom}**`,
                                         inline: true
                                         
                                         }
