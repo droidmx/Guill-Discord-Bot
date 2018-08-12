@@ -558,8 +558,22 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         finalchars += `**${chars[i].stats_maxed}**`
                         finalchars += " "
                         finalchars += chars[i].class
-                        
-                        finalchars += `\nBase <:fame:456347834908672030>: **${chars[i].fame}**`
+                        // begin testing
+                        var j;
+                        for (j in chars[i].equipment) {
+                            var charsitem = chars[i].equipment[j]
+                            if (chars[i].equipment[j] == 'Backpack') {
+                                finalchars += '<:backpack:462699732884783134>'
+                            } else {
+                                var citemname = charsitem.split(' ').slice(0, -1).join('_')
+                                var citemname = citemname.replace('-', '_')
+                                var citemname = citemname.replace('\u0027', '')
+                                // console.log(itemname)
+                                var citememoji = client.emojis.find('name', itemname)
+                                finalchars += `${citememoji}`
+                            }
+                        } //end testing
+                        finalchars += `\n**${chars[i].fame}** <:fame:456347834908672030>`
                         finalchars += "\n"
                         /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
                         \n`*/
