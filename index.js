@@ -697,12 +697,28 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                     equipment += `${itememoji}`
                                 }
                             }
+                            var charclass = c.body.characters[i].class 
+                            if (charclass.includes('Rogue')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Rogue.PNG'
+                            if (charclass.includes('Archer')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Archer_0.PNG'
+                            if (charclass.includes('Wizard')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Wizard_0.PNG'
+                            if (charclass.includes('Priest')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Priest_1.PNG'
+                            if (charclass.includes('Warrior')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Warrior_1.PNG'
+                            if (charclass.includes('Knight')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Knight_1.PNG'
+                            if (charclass.includes('Paladin')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Paladin.PNG'
+                            if (charclass.includes('Assassin')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/assassin_0.PNG'
+                            if (charclass.includes('Necromancer')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Necromancer.png'
+                            if (charclass.includes('Huntress')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Huntress.png'
+                            if (charclass.includes('Mystic')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Mystic_0.png'
+                            if (charclass.includes('Trickster')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Trickster_0.PNG'
+                            if (charclass.includes('Sorcerer')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/Sorcerer_0.png'
+                            if (charclass.includes('Ninja')) var charclasspic = 'https://www.realmeye.com/s/a/img/wiki/ninja_3.png'
+                            if (charclass.includes('Samurai')) var charclasspic = 'https://i.imgur.com/X5RhhbH.png'
+
                             msg.channel.send({
                                 embed: {
                                     color: 0x000000,
-                                    author: {
-                                        name: `Info for ${c.body.name}'s ${c.body.characters[i].class}`
-                                    },
+                                    title: `${c.body.name}'s ${c.body.characters[i].class}`,
+                                    url: `https://www.realmeye.com/player/${c.body.name}`,
                                     fields: [{
                                             name: "Class Quests Completed",
                                             value: `**${c.body.characters[i].class_quests_completed}**`
@@ -735,7 +751,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                         text: "© Droid"
                                     },
                                     thumbnail: {
-                                        "url": "https://i.imgur.com/B3VP4uA.png"
+                                        "url": charclasspic
                                     }
                                 }
                             });
