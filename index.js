@@ -584,6 +584,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 var citemname = charsitem.split(' ').slice(0, -1).join('_')
                                 var citemname = citemname.replace('-', '_')
                                 var citemname = citemname.replace('\u0027', '')
+                                var citemname = citemname.replace(':', '')
                                 // console.log(itemname)
                                 var citememoji = client.emojis.find('name', citemname)
                                 finalchars += `${citememoji}`
@@ -690,6 +691,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                     var itemname = charitem.split(' ').slice(0, -1).join('_')
                                     var itemname = itemname.replace('-', '_')
                                     var itemname = itemname.replace('\u0027', '')
+                                    var itemname = itemname.replace(':', '')
                                     // console.log(itemname)
                                     var itememoji = client.emojis.find('name', itemname)
                                     equipment += `${itememoji}`
