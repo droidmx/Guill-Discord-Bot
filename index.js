@@ -559,6 +559,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         finalchars += " "
                         finalchars += chars[i].class
                         // begin testing
+                        if (r.body.characterCount <= 8) {
                         var j;
                         for (j in chars[i].equipment) {
                             var charsitem = chars[i].equipment[j]
@@ -573,6 +574,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 finalchars += `${citememoji}`
                             }
                         } //end testing
+                    }
                         finalchars += `\n**${chars[i].fame}** <:fame:456347834908672030>`
                         finalchars += "\n"
                         /*finalchars += `Equips: \n ${chars[i].equipment[0]} **|** ${chars[i].equipment[1]} **|** ${chars[i].equipment[2]} **|** ${chars[i].equipment[3]}
