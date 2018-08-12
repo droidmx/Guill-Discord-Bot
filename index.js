@@ -569,7 +569,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 var citemname = citemname.replace('-', '_')
                                 var citemname = citemname.replace('\u0027', '')
                                 // console.log(itemname)
-                                var citememoji = client.emojis.find('name', itemname)
+                                var citememoji = client.emojis.find('name', citemname)
                                 finalchars += `${citememoji}`
                             }
                         } //end testing
