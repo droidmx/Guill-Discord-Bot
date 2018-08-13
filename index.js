@@ -562,7 +562,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
             let charapi = "http://www.tiffit.net/RealmInfo/api/user?u=" + charuser + "&f=;";
 
             snekfetch.get(charapi).then(r => {
-
+                if (!r.body.error) {
                 var chars = r.body.characters
                 if (!chars[0]) {
                     var finalchars = 'hidden'
@@ -623,7 +623,19 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
 
 
 
-
+            }else{
+                msg.channel.send({
+                    embed: {
+                        color: 0xFF0000,
+                        description: "<:warn:459473619613908994> User has a hidden realmeye profile, or does not exist!",
+                        timestamp: new Date(),
+                        footer: {
+                            icon_url: client.user.avatarURL,
+                            text: "© Droid & Co."
+                        }
+                    }
+                })
+            }
             })
             console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username}`)
             client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
