@@ -707,6 +707,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                     var itemname = itemname.replace('-', '_')
                                     var itemname = itemname.replace('\u0027', '')
                                     var itemname = itemname.replace(':', '')
+                                    if (charitem == 'Helm of the Jack-o\u0027-naut UT') var itemname = 'Helm_of_the_Jack_onaut'
                                     // console.log(itemname)
                                     var itememoji = client.emojis.find('name', itemname)
                                     equipment += `${itememoji}`
