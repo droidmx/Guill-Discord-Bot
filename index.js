@@ -582,9 +582,11 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 finalchars += '<:backpack:462699732884783134>'
                             } else {
                                 var citemname = charsitem.split(' ').slice(0, -1).join('_')
+                                
                                 var citemname = citemname.replace('-', '_')
                                 var citemname = citemname.replace('\u0027', '')
                                 var citemname = citemname.replace(':', '')
+                                if (citemname.includes('Jack')) console.log(citemname)
                                 // console.log(itemname)
                                 var citememoji = client.emojis.find('name', citemname)
                                 finalchars += `${citememoji}`
