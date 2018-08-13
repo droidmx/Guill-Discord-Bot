@@ -586,7 +586,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                                 var citemname = citemname.replace('-', '_')
                                 var citemname = citemname.replace('\u0027', '')
                                 var citemname = citemname.replace(':', '')
-                                if (citemname.includes('Jack')) var citemname = 'Helm_of_the_Jack_onaut'
+                                if (chars[i].equipment[j] == 'Helm of the Jack-o\u0027-naut UT') var citemname = 'Helm_of_the_Jack_onaut'
                                 // console.log(itemname)
                                 var citememoji = client.emojis.find('name', citemname)
                                 finalchars += `${citememoji}`
