@@ -190,8 +190,13 @@ client.on('message', async msg => { // START MESSAGE HANDLER
 
         if (msg.content.startsWith(prefix + 'stats')) {
             client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
+            var allusersever = 0
+            var allguilds = client.guilds.array()
+            for (i in allguilds) {
+                allusersever += allguilds[i].memberCount
+            }
             msg.channel.send(`\`\`\`asciidoc\n= STATISTICS =
-• Users      :: ${client.users.size.toLocaleString()}
+• Users      :: ${allusersever}
 • Servers    :: ${client.guilds.size.toLocaleString()}
 • Channels   :: ${client.channels.size.toLocaleString()}\`\`\``);
         }
@@ -1697,7 +1702,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                         },
                         {
                             name: "<:info:459473619530285057> Information",
-                            value: "```css\n(help) (info) (stats) (serverinfo) (invite)```"
+                            value: "```css\n(help) (info) (stats) (serverinfo) (invite) (partners)```"
                         }
 
 
