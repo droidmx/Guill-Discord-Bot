@@ -1527,8 +1527,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                     thumbnail: {
                         url: 'https://images-ext-2.discordapp.net/external/NaDVJCA1t67JzJ5ipmO-QBHdKgsfSS-RK-5_nsnUrKc/https/is1-ssl.mzstatic.com/image/thumb/Music128/v4/52/2d/47/522d47fe-79f3-a5cb-f831-e5116aeea118/source/1200x630bb.jpg'
                     },
-                    description: `__**Partners**__\n\n**[Deca Debrief](https://itunes.apple.com/us/podcast/deca-debrief/id1418676717)** is a podcast dedicated to covering news, updates, events, and the community of RotMG. Each week they bring on youtubers, UGC creators, and developers to discuss the current state of the game, where it's headed, and learn more about them Go show them some love!.
-                    `,
+                    description: `__**Partners**__\n\n**[Deca Debrief](https://itunes.apple.com/us/podcast/deca-debrief/id1418676717)** is a podcast dedicated to covering news, updates, events, and the community of RotMG. Each week they bring on youtubers, UGC creators, and developers to discuss the current state of the game, where it's headed, and learn more about them Go show them some love!.`,
                     timestamp: new Date(),
                     footer: {
                         icon_url: client.user.avatarURL,
