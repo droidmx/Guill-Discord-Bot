@@ -1518,7 +1518,7 @@ if (!msg.guild.member(msg.author).hasPermission('ADMINISTRATOR')) return msg.cha
                 }
             })
         } // end guild
-        if (msg.content.toLowerCase().startsWith(prefix + 'partners') {
+        if (msg.content.toLowerCase().startsWith(prefix + 'partners')) {
             console.log(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
             client.channels.get('466815252131086342').send(`${args[0]} used in ${msg.guild.name} by ${msg.author.username} \`[${moment().format("LT")}]\``)
             msg.channel.send({
