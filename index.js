@@ -97,7 +97,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
         } if (msg.content == 'seehowmany') {
             var allfuckingguilds = client.guilds.array()
             console.log(allfuckingguilds.length)
-            var totalnumberofusers = 0\
+            var totalnumberofusers = 0
             var skippedpeople = 0
             var allfuckingusers = []
             var i;
