@@ -103,7 +103,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             var i;
             var j;
             for (i in allfuckingguilds) {
-                var somestupidshit = allfuckingguilds.members.array()
+                var somestupidshit = allfuckingguilds[i].members.array()
                 for (j in somestupidshit) {
                     if (allfuckingusers.includes(somestupidshit[j].id)) {
                         console.log(`skipped ${somestupidshit[j].displayName}`)
