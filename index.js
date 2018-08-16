@@ -94,7 +94,7 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             })
 
 
-        } if (msg.content == 'seehowmany') {
+        } if (msg.content.startsWith(prefix + 'seehowmany')) {
             var allfuckingguilds = client.guilds.array()
             console.log(allfuckingguilds.length)
             var totalnumberofusers = 0
