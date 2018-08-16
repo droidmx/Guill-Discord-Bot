@@ -94,32 +94,58 @@ client.on('message', async msg => { // START MESSAGE HANDLER
             })
 
 
+        } if (msg.content == 'seehowmany') {
+            var allfuckingguilds = client.guilds.array()
+            console.log(allfuckingguilds.length)
+            var totalnumberofusers = 0\
+            var skippedpeople = 0
+            var allfuckingusers = []
+            var i;
+            var j;
+            for (i in allfuckingguilds) {
+                var somestupidshit = allfuckingguilds.members.array()
+                for (j in somestupidshit) {
+                    if (allfuckingusers.includes(somestupidshit[j].id)) {
+                        console.log(`skipped ${somestupidshit[j].displayName}`)
+                        skippedpeople += 1
+                    }else{
+                        allfuckingusers.push(somestupidshit[j].id)
+                        totalnumberofusers += 1
+                    }
+                }
+            }
+            console.log(`total users: ${totalnumberofusers}`)
+            console.log(`total skipped users: ${skippedpeople}`)
+
+            
         }
-     /*   if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
+       if (msg.content.toLowerCase().startsWith(prefix + 'launch')) {
+           if (!msg.content.includes('absolute')) return console.log(client.users.array().length);
             if (msg.author.id != '368756694114893825') return;
             var allusers = client.users.array();
             allusers.forEach((member) => {
                 console.log(member.id)
 
-                member.send(`__**A Message from the creator of ${client.user}**__
+                member.send(`__**${client.user}'s Recent Updates**__
 
-\n\n*I swear this is the only times you will get messaged!*
+\n*I'm terribly sorry if you are annoyed by this pm, it's one of the very few times you will get something like this*
 
-\n\nJust under a week ago, this bot was released. In that short amount time, this bot has jumped to **70 active servers** and **3.1k users**! What a big achievement!! As some of you may know, I have been continuously adding new commands to the bot. You can keep checking for new commands by typing \`/help\` once in a while. 
-
-\n\nIn light of this huge jump, it has come to my attention that its time I made a support server, for people who have questions about the bot, or want to help me keep improving it! So here it is, **Guill's Support Server**! Invite to this server is linked below. I have also added 2 new commands to get input from you guys! Just use \`/help\` and view the Development section. I am still actively adding to the bot, and my next big addition to this will be Realmeye Trades, if I can figure out how to do so! 
-
-\n\nOnce again, a big thanks to all of you for supporting this bot, and keeping me motivated to keep adding to it! Hope you guys have a great day!
-
-\n\n**Links:**
-\nReddit Post: https://www.reddit.com/r/RotMG/comments/8vygzj/guill_new_rotmg_discord_bot/?st=jjhmkegy&sh=6b6d76ad
+\n\nGuill has been public and online for about a month now, and has over **11K** users and on **200+** active servers! What a great achievment. A big thanks to all of you for supporting Guill and his development, and I hope all of you continue to do so!
+\nDevelopment will continue on Guill, including trades, and hopefully graveyards too! Item emojis have been added, so if you haven't seen so, check it out by using the \`/char\` in a server! 
+\n\n__**Partners**__
+\n[Deca Debrief](https://itunes.apple.com/us/podcast/deca-debrief/id1418676717) is a podcast dedicated to covering news, updates, events, and the community of RotMG. Each week they bring on youtubers, UGC creators, and developers to discuss the current state of the game, where it's headed, and learn more about them Go show them some love!.
+\nThe [RotMG Ideas Discord](https://discord.gg/bgrvxbW) is a place for enthusiastic RotMG Players to discuss ideas they've had regarding the game and its improvement. Join the discord and share your wonderful ideas!
+\n\n**Important Links:**
+\nPlease support the following links, and thanks for supporting Guill!
+\nOfficial Website: https://guill.glitch.me
+\nReddit Community: https://www.reddit.com/r/guill/ 
 \nSupport Server Invite: https://discord.gg/3Gby6sT
 
 
 `)
             })
 
-        }*/
+        }
 		
        
         if (msg.content.toLowerCase().startsWith('/serverinfo')) {
